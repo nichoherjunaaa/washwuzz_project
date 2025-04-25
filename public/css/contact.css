@@ -1,0 +1,335 @@
+/* Additional styles for Contact page */
+/* Import base styles from about_style.css */
+
+/* Contact container */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.contact-info, 
+.contact-form-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Contact Info Styles */
+.contact-info h2, 
+.contact-form-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #2c7bfe;
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.info-icon {
+    font-size: 2rem;
+    color: #2c7bfe;
+    margin-right: 1rem;
+    min-width: 40px;
+    text-align: center;
+}
+
+.info-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.info-content p {
+    margin-bottom: 0.3rem;
+    color: #555;
+}
+
+.social-contact h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.social-contact .social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-contact .social-icons a {
+    color: #2c7bfe;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.social-contact .social-icons a:hover {
+    opacity: 0.8;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2c7bfe;
+    outline: none;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox-group input {
+    width: auto;
+    margin-top: 0.2rem;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.checkbox-group a {
+    color: #2c7bfe;
+    text-decoration: none;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    background-color: #2c7bfe;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: block;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #1a68e0;
+    transform: translateY(-2px);
+}
+
+/* Locations Section */
+.locations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.map-container, 
+.branches-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.map-placeholder {
+    background-color: #e1e1e1;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.5rem;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.branches-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.branch-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.branch-card h4 {
+    color: #2c7bfe;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.branch-card p {
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.view-all-branches {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.view-all-button {
+    display: inline-block;
+    background-color: transparent;
+    color: #2c7bfe;
+    border: 2px solid #2c7bfe;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.view-all-button:hover {
+    background-color: #2c7bfe;
+    color: white;
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #333;
+    flex: 1;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: #2c7bfe;
+    font-weight: bold;
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 300px;
+}
+
+.faq-answer p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+    .branches-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .info-item {
+        flex-direction: column;
+    }
+    
+    .info-icon {
+        margin-bottom: 0.5rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ServiceViewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/service', function () {
-    return view('service');
-});
+// Route untuk menampilkan semua layanan di service.blade.php
+Route::get('/services', [ServiceViewController::class, 'index'])->name('services.index');
+
 Route::get('/order', function () {
     return view('order');
 });

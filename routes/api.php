@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Laravel RESTful API Routes
+
 Route::apiResource('services', ServiceController::class);

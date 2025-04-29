@@ -37,7 +37,8 @@
             <h2 class="section-title">Layanan Kami</h2>
             <p class="section-subtitle">Pilih dari berbagai layanan laundry dan dry cleaning kami, semua dirancang untuk mempermudah hidup Anda dan menjaga pakaian Anda tetap terbaik.</p>
             
-            <div class="services-grid">
+            {{-- <div class="services-grid">
+                
                 <!-- Cuci & Lipat Reguler -->
                 <div class="service-card">
                     <div class="service-image">👕</div>
@@ -133,7 +134,38 @@
                         <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
                     </div>
                 </div>
+            </div> --}}
+
+            <div class="services-grid">
+                @foreach ($services as $service)
+                    <div class="service-card">
+                        <div class="service-image">
+                            <!-- Bisa pakai emoji default, atau pakai gambar dari database kalau ada -->
+                            <img src="{{ $service['image'] ?? 'default-image.png' }}" alt="{{ $service['name'] }}" style="width: 100px; height: 100px;">
+                        </div>
+                        <div class="service-content">
+                            <div class="service-name">
+                                <span>{{ $service['name'] }}</span>
+                                @if (!empty($service['popular']) && $service['popular'])
+                                    <span class="popular-tag">Populer</span>
+                                @endif
+                            </div>
+                            <div class="service-price">Mulai dari Rp{{ number_format($service['price'], 0, ',', '.') }}/{{ $service['unit'] ?? 'item' }}</div>
+                            <p class="service-description">{{ $service['description'] }}</p>
+                            <ul class="service-features">
+                                @if (!empty($service['features']))
+                                    @foreach ($service['features'] as $feature)
+                                        <li>{{ $feature }}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                            <a href="{{ url('/service/' . $service['id']) }}" class="service-button">Pilih</a>
+                            <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+            
             
         </div>
     </section>

@@ -11,8 +11,18 @@ class ServiceController extends Controller
     // Mendapatkan semua layanan
     public function index()
     {
-        $services = Service::all(); // Ambil langsung dari DB lokal
-        return response()->json($services);
+        try {
+            $services = Service::all();
+            return response()->json([
+                'data' => $services,
+                'message' => 'Success'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // Menyimpan layanan baru
@@ -24,37 +34,78 @@ class ServiceController extends Controller
             'image' => 'nullable|string',
             'price' => 'required|numeric',
         ]);
-        $service = Service::create($validated);
-        return response()->json($service, 201);
+
+        try {
+            $service = Service::create($validated);
+            return response()->json($service, 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create service',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // Menampilkan layanan berdasarkan ID
     public function show($id)
     {
-        $service = Service::find($id);
-        if(!$service) {
+        try {
+            $service = Service::find($id);
+            if (!$service) {
+                return response()->json([
+                    'message' => 'Service not found!'
+                ], 404);
+            }
+            return response()->json($service);
+        } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Layanan tidak ditemukan'
-            ], 404);
+                'message' => 'An error occurred while retrieving the service',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        return response()->json($service);
     }
 
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
-        $service->update($request->all());
+        $service = Service::find($id);
+        if (!$service) {
+            return response()->json([
+                'message' => 'Service not found, failed update',
+            ], 404);
+        }
 
-        return response()->json($service);
+        try {
+            $service->update($request->all());
+            return response()->json($service);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Something went wrong',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // Menghapus layanan
     public function destroy($id)
     {
-        $service = Service::findOrFail($id);
-        $service->delete();
+        try {
+            $service = Service::findOrFail($id);
+            $service->delete();
+            return response()->json([
+                'message' => 'Success delete service'
+            ], 200);
+        } catch (\Exception $e) {
+            if ($e instanceof ModelNotFoundException) {
+                return response()->json([
+                    'message' => 'Service not found, failed delete',
+                ], 404);
+            }
 
-        return response()->json(null, 204);
+            return response()->json([
+                'message' => 'An error occurred while deleting the service',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // Menampilkan layanan ke view (jika diperlukan frontend blade)

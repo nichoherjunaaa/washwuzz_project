@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
@@ -24,3 +25,6 @@ Route::get('services/{id}', [ServiceController::class, 'show']);
 Route::post('services', [ServiceController::class, 'store']);
 Route::put('services/{id}', [ServiceController::class, 'update']);
 Route::delete('services/{id}', [ServiceController::class, 'destroy']);
+
+Route::get('auth', [UserController::class, 'index']);
+Route::post('auth', [UserController::class, 'store']);

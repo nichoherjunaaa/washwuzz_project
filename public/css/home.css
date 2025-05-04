@@ -81,7 +81,7 @@ nav a.active {
 
 /* Hero section */
 .hero {
-    background: linear-gradient(rgba(44, 123, 254, 0.9), rgba(44, 123, 254, 0.8)), url('/api/placeholder/1200/600') center/cover no-repeat;
+    background: linear-gradient(rgba(44, 123, 254, 0.9), rgba(44, 123, 254, 0.8)), url('https://images.pexels.com/photos/2254065/pexels-photo-2254065.jpeg?auto=compress&cs=tinysrgb&w=600') center/cover no-repeat;
     color: white;
     padding: 8rem 0 4rem;
     margin-top: 4rem;

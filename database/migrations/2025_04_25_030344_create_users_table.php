@@ -15,15 +15,15 @@ return new class extends Migration {
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
-            $table->string('phone_number')->nullable();
-            $table->text('address')->nullable();
+            $table->string('phone_number');
+            $table->string('address');
             $table->string('password');
+            $table->enum('role', ['client', 'admin'])->default('client');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

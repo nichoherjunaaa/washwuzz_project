@@ -29,3 +29,5 @@ Route::delete('services/{id}', [ServiceController::class, 'destroy']);
 Route::get('auth', [UserController::class, 'index']);
 Route::post('auth', [UserController::class, 'store']);
 Route::put('auth/{id}', [UserController::class, 'update']);
+Route::get('auth/{id}', [UserController::class, 'show']);
+Route::delete('auth/{id}', [UserController::class, 'destroy']);

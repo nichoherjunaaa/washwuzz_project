@@ -24,7 +24,6 @@ class ServiceController extends Controller
             'image' => 'nullable|string',
             'price' => 'required|numeric',
         ]);
-
         $service = Service::create($validated);
         return response()->json($service, 201);
     }
@@ -32,11 +31,15 @@ class ServiceController extends Controller
     // Menampilkan layanan berdasarkan ID
     public function show($id)
     {
-        $service = Service::findOrFail($id);
+        $service = Service::find($id);
+        if(!$service) {
+            return response()->json([
+                'message' => 'Layanan tidak ditemukan'
+            ], 404);
+        }
         return response()->json($service);
     }
 
-    // Memperbarui layanan
     public function update(Request $request, $id)
     {
         $service = Service::findOrFail($id);

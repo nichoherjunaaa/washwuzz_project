@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami - WashWuzz</title>
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -29,7 +30,7 @@
                     <p>Di WashWuzz, kami percaya bahwa cucian bersih adalah hak setiap orang. Kami berdedikasi untuk memberikan hasil terbaik dengan menggunakan teknologi modern dan produk ramah lingkungan, sambil tetap mempertahankan layanan personal yang hangat kepada setiap pelanggan.</p>
                 </div>
                 <div class="about-image">
-                    👚
+                    <img src="https://images.pexels.com/photos/271711/pexels-photo-271711.jpeg" alt="WashWuzz Laundry">
                 </div>
             </div>
         </div>
@@ -41,32 +42,44 @@
             <h2 class="section-title">Nilai-Nilai Kami</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">💯</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
                     <h3>Kualitas Tanpa Kompromi</h3>
                     <p>Kami tidak pernah berkompromi dalam hal kualitas layanan. Setiap cucian diperlakukan dengan standar tertinggi untuk memberikan hasil terbaik.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🌍</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-earth-asia"></i>
+                    </div>
                     <h3>Ramah Lingkungan</h3>
                     <p>Kami berkomitmen untuk menggunakan produk dan proses yang ramah lingkungan, mengurangi jejak karbon, dan berkontribusi pada planet yang lebih sehat.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
                     <h3>Integritas & Kejujuran</h3>
                     <p>Kami menjalankan bisnis kami dengan integritas dan kejujuran tertinggi, membangun kepercayaan dengan pelanggan melalui transparansi dalam setiap interaksi.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">⚡</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
                     <h3>Inovasi Berkelanjutan</h3>
                     <p>Kami terus berinovasi untuk meningkatkan proses dan layanan kami, mengadaptasi teknologi baru untuk memberikan pengalaman terbaik kepada pelanggan.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">👥</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
                     <h3>Berfokus Pada Pelanggan</h3>
                     <p>Kebutuhan dan kepuasan pelanggan adalah pusat dari segala yang kami lakukan. Kami berusaha untuk melebihi ekspektasi dalam setiap interaksi.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">♻️</div>
+                    <div class="value-icon">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
                     <h3>Keberlanjutan</h3>
                     <p>Kami berkomitmen untuk praktik bisnis yang berkelanjutan dan bertanggung jawab secara sosial, memberi dampak positif pada komunitas kami.</p>
                 </div>
@@ -139,9 +152,9 @@
                         <div class="team-position">Pendiri & CEO</div>
                         <p class="team-bio">Roganda memiliki pengalaman lebih dari 15 tahun dalam industri layanan. Visinya untuk layanan laundry berkualitas tinggi yang mudah diakses menjadi dasar dari WashWuzz.</p>
                         <div class="social-links">
-                            <a href="#">📘</a>
-                            <a href="#">🐦</a>
-                            <a href="#">📷</a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -154,9 +167,9 @@
                         <div class="team-position">Pendiri & CEO</div>
                         <p class="team-bio">Alfeus memiliki pengalaman lebih dari 15 tahun dalam industri layanan. Visinya untuk layanan laundry berkualitas tinggi yang mudah diakses menjadi dasar dari WashWuzz.</p>
                         <div class="social-links">
-                            <a href="#">📘</a>
-                            <a href="#">🐦</a>
-                            <a href="#">📷</a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -169,9 +182,9 @@
                         <div class="team-position">Direktur Operasional</div>
                         <p class="team-bio">Nicho mengawasi semua operasi sehari-hari di WashWuzz. Keahliannya dalam manajemen operasi telah membantu menciptakan proses yang efisien dan berkualitas.</p>
                         <div class="social-links">
-                            <a href="#">📘</a>
-                            <a href="#">🐦</a>
-                            <a href="#">📷</a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -184,9 +197,9 @@
                         <div class="team-position">Manajer Teknologi</div>
                         <p class="team-bio">Abdiel memimpin tim pengembangan teknologi yang membangun aplikasi dan infrastruktur digital yang memudahkan pengalaman pelanggan di WashWuzz.</p>
                         <div class="social-links">
-                            <a href="#">📘</a>
-                            <a href="#">🐦</a>
-                            <a href="#">📷</a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

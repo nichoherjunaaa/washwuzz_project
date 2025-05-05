@@ -20,11 +20,12 @@
         <div class="footer-links">
             <h4>Ikuti Kami</h4>
             <div class="social-icons">
-                <a href="#">📘</a>
-                <a href="#">🐦</a>
-                <a href="#">📷</a>
-                <a href="#">📱</a>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/your-number" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
+            
             <h4 style="margin-top: 1.5rem;">Newsletter</h4>
             <p>Berlangganan untuk info terbaru dan promo spesial</p>
             <form style="margin-top: 0.5rem;">

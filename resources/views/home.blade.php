@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WashWuzz | Laundry Platform</title>
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -27,17 +28,23 @@
             <h2 class="section-title">Kenapa Memilih Kami</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
                     <h3>Pelayanan Cepat</h3>
                     <p>Pakaian bersih kembali dalam 24 jam dengan opsi layanan ekspres kami.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💰</div>
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
                     <h3>Harga Terjangkau</h3>
                     <p>Harga bersaing dengan paket langganan untuk lebih hemat dalam penggunaan rutin.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">✨</div>
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
                     <h3>Jaminan Kualitas</h3>
                     <p>Jaminan 100% kepuasan atau kami akan mencuci ulang tanpa biaya tambahan.</p>
                 </div>

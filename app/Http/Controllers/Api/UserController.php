@@ -8,6 +8,54 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function login(Request $request) {
+        $user = User::where('email', $request->email)->first();
+        if ($user === null || !Hash::check($request->password, $user->password)) {
+            return response([
+                'message' => ['These credentials do not match our records.']
+            ], 404);
+        }
+        try {
+            $token = $user->createToken(env('SECRET_TOKEN'))->plainTextToken;
+            $response = [
+                'user' => $user,
+                'token' => $token
+            ];
+            return response($response, 201);
+        } catch (\Exception $e) {
+            return response([
+                'message' => ['An error occurred while attempting to log in.']
+            ], 500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+        if ($user === null) {
+            return response([
+                'message' => ['User not found.']
+            ], 404);
+        }
+        try {
+            $token = $user->currentAccessToken();
+            if ($token === null) {
+                return response([
+                    'message' => ['Access token not found.']
+                ], 404);
+            }
+            $token->delete();
+            return response([
+                'message' => 'Success logout'
+            ], 200);
+        } catch (\Exception $e) {
+            return response([
+                'message' => ['An error occurred while attempting to log out.']
+            ], 500);
+        }
+    }
+
     public function index()
     {
         $users = User::all();
@@ -27,6 +75,13 @@ class UserController extends Controller
         ]);
 
         try {
+            if (empty($validated)) {
+                return response()->json([
+                    'message' => 'Failed to create user',
+                    'error' => 'No validated data was provided.'
+                ], 400);
+            }
+
             $user = User::create([
                 'firstname' => $validated['firstname'],
                 'lastname' => $validated['lastname'],
@@ -36,6 +91,14 @@ class UserController extends Controller
                 'address' => $validated['address'],
                 'role' => $validated['role']
             ]);
+
+            if ($user === null) {
+                return response()->json([
+                    'message' => 'Failed to create user',
+                    'error' => 'No user was created.'
+                ], 500);
+            }
+
             return response()->json($user, 201);
         } catch (\Exception $e) {
             return response()->json([

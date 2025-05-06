@@ -8,7 +8,7 @@
         <nav id="mainNav">
             <ul>
                 <li><a href="/">Beranda</a></li>
-                <li><a href="/services">Layanan</a></li>
+                <li><a href="/service">Layanan</a></li>
                 <li><a href="/order">Pesanan</a></li>
                 <li><a href="/about">Tentang Kami</a></li>
                 <li><a href="/contact">Kontak</a></li>

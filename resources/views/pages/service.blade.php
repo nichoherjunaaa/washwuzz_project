@@ -161,7 +161,7 @@
                                     @endforeach
                                 @endif
                             </ul>
-                            <a href="{{ url('/service/' . $service['id']) }}" class="service-button">Pilih</a>
+                            <a href="{{ url('/service/detail/' . $service['id']) }}" class="service-button">Pilih</a>
                             <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
                         </div>
                     </div>

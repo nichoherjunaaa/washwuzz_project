@@ -17,15 +17,23 @@ Route::get('/', function () {
     return view('home');
 });
 // Route untuk menampilkan semua layanan di service.blade.php
-Route::get('/services', [ServiceController::class, 'viewService']);
+Route::get('/service', [ServiceController::class, 'index']);
+
+Route::get('/service/detail/{id}', [ServiceController::class, 'show']);
 
 Route::get('/order', function () {
-    return view('order');
+    return view('pages.order');
 });
 Route::get('/about', function () {
-    return view('about');
+    return view('pages.about');
 });
 Route::get('/contact', function () {
-    return view('contact');
+    return view('pages.contact');
+});
+Route::get('/order/detail', function () {
+    return view('pages.order_detail');
 });
 
+Route::get('/checkout', function () {
+    return view('pages.checkout');
+});

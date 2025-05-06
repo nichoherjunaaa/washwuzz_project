@@ -74,7 +74,7 @@
                         <td>
                             <div class="action-buttons">
                                 <button class="btn"
-                                    onclick="window.location.href = '../order_detail/order_detail.html' ">Lihat
+                                    onclick="window.location.href = '/order/detail' ">Lihat
                                     Detail</button>
                                 <button class="btn btn-outline">Lacak</button>
                             </div>

@@ -8,24 +8,32 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    // Mendapatkan semua layanan
     public function index()
     {
         try {
             $services = Service::all();
-            return response()->json([
-                'data' => $services,
-                'message' => 'Success'
-            ], 200);
+
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'data' => $services,
+                    'message' => 'Success'
+                ], 200);
+            }
+
+            return view('pages.service', compact('services'));
+
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Something went wrong',
-                'error' => $e->getMessage()
-            ], 500);
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'message' => 'Something went wrong',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+
+            return redirect()->back()->withErrors('Something went wrong: ' . $e->getMessage());
         }
     }
 
-    // Menyimpan layanan baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -46,24 +54,39 @@ class ServiceController extends Controller
         }
     }
 
-    // Menampilkan layanan berdasarkan ID
     public function show($id)
-    {
-        try {
-            $service = Service::find($id);
-            if (!$service) {
+{
+    try {
+        $service = Service::find($id);
+
+        if (!$service) {
+            if (request()->wantsJson()) {
                 return response()->json([
                     'message' => 'Service not found!'
                 ], 404);
             }
+
+            return redirect()->back()->withErrors('Service not found!');
+        }
+
+        if (request()->wantsJson()) {
             return response()->json($service);
-        } catch (\Exception $e) {
+        }
+
+        return view('pages.service_detail', compact('service'));
+
+    } catch (\Exception $e) {
+        if (request()->wantsJson()) {
             return response()->json([
                 'message' => 'An error occurred while retrieving the service',
                 'error' => $e->getMessage()
             ], 500);
         }
+
+        return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
     }
+}
+
 
     public function update(Request $request, $id)
     {
@@ -106,12 +129,5 @@ class ServiceController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
-    }
-
-    // Menampilkan layanan ke view (jika diperlukan frontend blade)
-    public function viewService()
-    {
-        $services = Service::all();
-        return view('service', compact('services'));
     }
 }

@@ -12,7 +12,7 @@
                 <li><a href="/order">Pesanan</a></li>
                 <li><a href="/about">Tentang Kami</a></li>
                 <li><a href="/contact">Kontak</a></li>
-                <li><a href="../login_page/login.html">Masuk</a></li>
+                <li><a href="/login">Masuk</a></li>
             </ul>
         </nav>
     </div>

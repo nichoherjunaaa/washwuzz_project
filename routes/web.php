@@ -37,3 +37,8 @@ Route::get('/order/detail', function () {
 Route::get('/checkout', function () {
     return view('pages.checkout');
 });
+
+// Auth
+Route::get('/login', function () {
+    return view('auth.login');
+});

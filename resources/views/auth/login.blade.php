@@ -38,7 +38,7 @@
                     <button type="submit" class="login-button">Masuk</button>
                 </form>
                 <div class="register-link">
-                    <p>Belum memiliki akun? <a href="../register_page/register.html">Daftar sekarang</a></p>
+                    <p>Belum memiliki akun? <a href="/register">Daftar sekarang</a></p>
                 </div>
                 <div class="social-login">
                     <div class="social-login-title">

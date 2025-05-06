@@ -14,7 +14,7 @@ use App\Http\Controllers\Api\ServiceController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.home');
 });
 // Route untuk menampilkan semua layanan di service.blade.php
 Route::get('/service', [ServiceController::class, 'index']);
@@ -41,4 +41,7 @@ Route::get('/checkout', function () {
 // Auth
 Route::get('/login', function () {
     return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
 });

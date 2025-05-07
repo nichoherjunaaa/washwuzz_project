@@ -17,7 +17,7 @@
             <div class="hero-content">
                 <h1>Pakaian Bersih. Hidup Bersih.</h1>
                 <p>Biarkan kami yang mengurus cucian Anda, agar Anda bisa fokus pada hal yang lebih penting. Layanan laundry profesional dengan penjemputan dan pengantaran gratis ke rumah Anda.</p>
-                <a href="./order_page/order.html" class="cta-button">Pesan Sekarang</a>
+                <a href="/service" class="cta-button">Pesan Sekarang</a>
             </div>
         </div>
     </section>
@@ -91,6 +91,7 @@
                     </div>
                 </div>
             </div>
+            <a href="/service" class="another-service-btn">Lihat Layanan Lain</a>
         </div>
     </section>
 

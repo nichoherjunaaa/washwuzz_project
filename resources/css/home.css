@@ -243,6 +243,20 @@ nav a.active {
     background-color: #1a68e7;
 }
 
+.another-service-btn {
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #fff;
+    color: #2c7bfe;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .popular-tag {
     background-color: #ff6b6b;
     color: white;

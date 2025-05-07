@@ -44,7 +44,7 @@ class ServiceController extends Controller
         ]);
 
         try {
-            $service = Service::create($validated);
+            $service = Service::create(attributes: $validated);
             return response()->json($service, 201);
         } catch (\Exception $e) {
             return response()->json([

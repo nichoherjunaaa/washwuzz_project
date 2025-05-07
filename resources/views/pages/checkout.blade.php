@@ -98,7 +98,7 @@
                                 <input type="radio" name="pickup" id="pickup-scheduled">
                                 <span class="pickup-icon">📅</span>
                                 <div class="pickup-details">
-                                    <div class="pickup-title">Penjemputan Terjadwal</div>
+                                    <div class="pickup-title">Pick Up</div>
                                     <div class="pickup-description">Pilih tanggal dan waktu spesifik</div>
                                 </div>
                                 <div class="pickup-price">Gratis</div>
@@ -144,7 +144,7 @@
                     </div>
 
                     <!-- Payment Methods -->
-                    <div class="checkout-card">
+                    {{-- <div class="checkout-card">
                         <h3>Metode Pembayaran</h3>
                         <div class="payment-methods">
                             <div class="payment-method selected">
@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Order Summary -->
                 <div class="order-summary">
@@ -189,12 +189,12 @@
                             </div>
                         </div>
                         
-                        <div class="promo-code">
+                        {{-- <div class="promo-code">
                             <input type="text" class="form-control" placeholder="Kode Promo">
                             <button>Terapkan</button>
-                        </div>
+                        </div> --}}
                         
-                        <div class="price-summary">
+                        {{-- <div class="price-summary">
                             <div class="price-row">
                                 <span>Subtotal</span>
                                 <span>Rp150.000</span>
@@ -211,7 +211,7 @@
                                 <span>Total</span>
                                 <span>Rp200.000</span>
                             </div>
-                        </div>
+                        </div> --}}
                         
                         <button class="checkout-btn">Konfirmasi Pesanan</button>
                         <div class="secure-notice">

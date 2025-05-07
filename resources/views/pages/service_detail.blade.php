@@ -14,9 +14,9 @@
     <!-- Service Detail Header -->
     <section class="service-detail-header">
         <div class="container">
-            <h1>Cuci & Lipat Reguler</h1>
-            <p>Layanan cuci, kering, dan lipat standar untuk kebutuhan laundry sehari-hari Anda dengan kualitas premium dan penanganan yang teliti.</p>
-            <div class="price-badge">Mulai dari Rp7.000/kg</div>
+            <h1>{{ $service->name ?? '' }}</h1>
+            <p>{{ $service->description ?? '' }}</p>
+            <div class="price-badge">Rp{{ $service->price ?? 0 }}/kg</div>
         </div>
     </section>
 
@@ -27,8 +27,7 @@
                 <div class="overview-image">👕</div>
                 <div class="overview-content">
                     <h2>Layanan Standar Kami yang Paling Populer</h2>
-                    <p>Cuci & Lipat Reguler adalah layanan standar kami yang paling diminati. Ideal untuk pakaian sehari-hari, handuk, seprai, dan item lainnya yang dapat dicuci dengan mesin.</p>
-                    <p>Setiap item akan ditangani dengan hati-hati, dicuci dengan detergen premium, dikeringkan pada suhu yang tepat, dan dilipat atau digantung dengan rapi sesuai jenisnya. Kami memastikan pakaian Anda kembali dalam kondisi terbaik.</p>
+                    <p>{{ $service->description ?? '' }}</p>
                     
                     <div class="feature-list">
                         <div class="feature-item">
@@ -61,7 +60,7 @@
                         </div>
                     </div>
 
-                    <a href="../checkout_page/checkout.html" class="order-button">Pesan Layanan Ini</a>
+                    <a href="/checkout" class="order-button">Pesan Layanan Ini</a>
                 </div>
             </div>
         </div>
@@ -107,7 +106,7 @@
     </section>
 
     <!-- Additional Services -->
-    <section class="additional-services">
+    {{-- <section class="additional-services">
         <div class="container">
             <h2 class="section-title">Tambahkan Layanan</h2>
             <div class="services-list">
@@ -155,7 +154,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- FAQ Section -->
     <section class="faq-section">

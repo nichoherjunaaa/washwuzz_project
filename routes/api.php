@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/service', [ServiceController::class, 'index']);
+Route::get('service', [ServiceController::class, 'index']);
 Route::get('service/detail/{id}', [ServiceController::class, 'show']);
 
 // Admin Only

@@ -257,7 +257,7 @@
         <div class="container">
             <h2>Bergabunglah dengan Keluarga WashWuzz</h2>
             <p>Lebih dari 20.000 pelanggan mempercayakan cucian mereka kepada kami. Rasakan sendiri perbedaan layanan laundry profesional yang dihadirkan oleh WashWuzz.</p>
-            <a href="#" class="cta-button">Pesan Sekarang</a>
+            <a href="/service" class="cta-button">Pesan Sekarang</a>
         </div>
     </section>
 

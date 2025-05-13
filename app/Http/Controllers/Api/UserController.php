@@ -5,24 +5,38 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response([
+                'message' => $validator->errors()
+            ], 422);
+        }
+
         $user = User::where('email', $request->email)->first();
-        if ($user === null || !Hash::check($request->password, $user->password)) {
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
                 'message' => ['These credentials do not match our records.']
-            ], 404);
+            ], 401);
         }
+
         try {
-            $token = $user->createToken(env('SECRET_TOKEN'))->plainTextToken;
-            $response = [
+            $token = $user->createToke(env('SECRET_TOKEN'))->plainTextToken;
+            return response([
                 'user' => $user,
                 'token' => $token
-            ];
-            return response($response, 201);
+            ], 200);
         } catch (\Exception $e) {
             return response([
                 'message' => ['An error occurred while attempting to log in.']
@@ -33,19 +47,15 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $user = $request->user();
-        if ($user === null) {
+
+        if (!$user) {
             return response([
                 'message' => ['User not found.']
-            ], 404);
+            ], 401);
         }
+
         try {
-            $token = $user->currentAccessToken();
-            if ($token === null) {
-                return response([
-                    'message' => ['Access token not found.']
-                ], 404);
-            }
-            $token->delete();
+            $user->currentAccessToken()->delete();
             return response([
                 'message' => 'Success logout'
             ], 200);
@@ -107,7 +117,7 @@ class UserController extends Controller
             ], 500);
         }
     }
-    
+
     public function show(string $id)
     {
         $user = User::findOrFail($id);

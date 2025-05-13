@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->post('/auth/logout', [UserController::class, 'logout']);
 
 Route::get('service', [ServiceController::class, 'index']);
 Route::get('service/detail/{id}', [ServiceController::class, 'show']);
@@ -31,7 +32,7 @@ Route::delete('services/{id}', [ServiceController::class, 'destroy']);
 
 // Auth Multi User
 Route::post('auth/login', [UserController::class, 'login']);
-Route::delete('auth/logout', [UserController::class, 'logout']);
+// Route::delete('auth/logout', [UserController::class, 'logout']);
 Route::post('auth', [UserController::class, 'store']);
 
 // Admin Only

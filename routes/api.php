@@ -32,7 +32,6 @@ Route::delete('services/{id}', [ServiceController::class, 'destroy']);
 
 // Auth Multi User
 Route::post('auth/login', [UserController::class, 'login']);
-// Route::delete('auth/logout', [UserController::class, 'logout']);
 Route::post('auth', [UserController::class, 'store']);
 
 // Admin Only

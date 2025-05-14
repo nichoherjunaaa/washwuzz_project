@@ -33,6 +33,9 @@ header {
     align-items: center;
     padding: 1rem 0;
 }
+.hidden {
+    visibility: hidden;
+}
 
 .logo {
     display: flex;

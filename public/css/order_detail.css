@@ -248,3 +248,7 @@
         font-weight: 500;
     }
 }
+
+.hidden {
+    visibility: hidden;
+}

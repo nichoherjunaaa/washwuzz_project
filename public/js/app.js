@@ -1,31 +1,36 @@
-const authLink = document.getElementById('auth-link');
-
 function updateAuthLink() {
     const token = localStorage.getItem('token');
-    
-    // Menentukan elemen authLink (tombol masuk/keluar)
     const authLink = document.getElementById('auth-link');
-    
+
+    if (!authLink) return;
+
     if (token) {
         authLink.textContent = 'Keluar';  
         authLink.style.backgroundColor = '#CE2941'; 
         authLink.style.color = 'white';
         authLink.style.borderRadius = '20px';
         authLink.style.padding = '10px 20px';
-        authLink.addEventListener('click', logout); 
+        authLink.setAttribute('href', '#');
+
+        authLink.onclick = logout;
     } else {
         authLink.textContent = 'Masuk';
-        authLink.style.padding = '10px 20px';
         authLink.setAttribute('href', '/login');
         authLink.style.backgroundColor = '';  
-        authLink.removeEventListener('click', logout); 
+        authLink.style.color = '';
+        authLink.style.borderRadius = '';
+        authLink.style.padding = '10px 20px';
+
+        authLink.onclick = null;
     }
+
+    authLink.classList.remove('hidden');
 }
 
+async function logout(event) {
+    event.preventDefault();
 
-async function logout() {
     const token = localStorage.getItem('token');
-    
     if (!token) {
         alert('Tidak ada sesi aktif.');
         return;
@@ -47,9 +52,7 @@ async function logout() {
         }
 
         localStorage.removeItem('token');
-        
         updateAuthLink();
-
         alert('Anda telah keluar!');
         window.location.href = '/';
     } catch (error) {
@@ -59,4 +62,3 @@ async function logout() {
 }
 
 document.addEventListener('DOMContentLoaded', updateAuthLink);
-

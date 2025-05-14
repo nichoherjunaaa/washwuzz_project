@@ -354,3 +354,7 @@
         grid-template-columns: 1fr;
     }
 }
+
+.hidden {
+    visibility: hidden;
+}

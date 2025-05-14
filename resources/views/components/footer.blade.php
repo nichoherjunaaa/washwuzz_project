@@ -38,3 +38,5 @@
         <p>&copy; 2025 WashWuzz Laundry. Hak cipta dilindungi undang-undang.</p>
     </div>
 </footer>
+    
+<script src="{{ asset('js/app.js') }}"></script>

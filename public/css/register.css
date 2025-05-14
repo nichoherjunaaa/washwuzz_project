@@ -142,6 +142,10 @@ nav a.active {
     transition: border-color 0.3s;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .form-group textarea {
     resize: vertical;
 }

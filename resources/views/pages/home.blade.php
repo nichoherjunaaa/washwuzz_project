@@ -98,7 +98,6 @@
     <!-- Footer -->
     @include('components.footer')
 
-    <script src="{{ asset('js/app.js') }}"></script>
     <script>
         // Toggle menu untuk tampilan mobile
         const menuToggle = document.getElementById('menuToggle');

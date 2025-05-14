@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header -->
     @include('components.navbar');
@@ -26,7 +28,8 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Kata Sandi</label>
-                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required>
+                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda"
+                            required>
                     </div>
                     <div class="form-footer">
                         <div class="remember-me">
@@ -61,24 +64,84 @@
         // Toggle menu untuk tampilan mobile
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
-        
+
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
         });
 
-        // Form submission handling
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Here you would typically send this data to your server
-            console.log('Login attempt:', { email, password });
-            
-            // For demo purposes, show success message
-            alert('Login berhasil!');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();  // Pastikan preventDefault dipanggil dengan benar
+
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            if (!emailInput || !passwordInput) {
+                console.error('Tidak dapat menemukan input email atau password');
+                return;
+            }
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Validasi input
+            if (!email || !password) {
+                alert('Email dan password wajib diisi.');
+                return;
+            }
+
+            // Menampilkan loader/spinner pada tombol login
+            const loginButton = document.querySelector('.login-button');
+            loginButton.disabled = true;
+            loginButton.innerText = 'Memproses...';
+
+            try {
+                const response = await fetch('api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                console.log('Respon dari server:', data);
+
+                if (!response.ok) {
+                    const message = data?.message?.[0] || 'Login gagal';
+                    alert(message);
+                    loginButton.disabled = false;
+                    loginButton.innerText = 'Masuk';
+                    return;
+                }
+
+                if (data?.user && data?.token) {
+                    alert('Login berhasil!');
+                    console.log('User:', data.user);
+                    console.log('Token:', data.token);
+
+                    // Simpan token di localStorage
+                    localStorage.setItem('token', data.token);
+
+                    // Redirect berdasarkan role user
+                    if (data?.user?.role === 'admin') {
+                        window.location.href = '/admin/dashboard';
+                    } else {
+                        window.location.href = '/';
+                    }
+                } else {
+                    alert('Terjadi kesalahan saat login.');
+                    loginButton.disabled = false;
+                    loginButton.innerText = 'Masuk';
+                }
+            } catch (error) {
+                console.error('Error saat login:', error);
+                alert('Tidak dapat menghubungi server. Pastikan koneksi internet stabil atau coba beberapa saat lagi.');
+                loginButton.disabled = false;
+                loginButton.innerText = 'Masuk';
+            }
         });
     </script>
 </body>
+
 </html>

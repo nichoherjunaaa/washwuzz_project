@@ -25,14 +25,27 @@ class UserController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user) {
+            return response([
+                'message' => ['User not found.']
+            ], 401);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
             return response([
                 'message' => ['These credentials do not match our records.']
             ], 401);
         }
 
         try {
-            $token = $user->createToke(env('SECRET_TOKEN'))->plainTextToken;
+            $token = $user->createToken(env('SECRET_TOKEN'))->plainTextToken;
+
+            if (!$token) {
+                return response([
+                    'message' => ['An error occurred while attempting to log in.']
+                ], 500);
+            }
+
             return response([
                 'user' => $user,
                 'token' => $token

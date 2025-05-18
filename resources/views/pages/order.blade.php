@@ -65,7 +65,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>#WW78523</td>
+                        @foreach ($transactions as $transaction )
+                        <td>{{ $transaction->id }}</td>
+                        <td>{{ $transaction->created_at }}</td>
+                        <td>{{ $transaction->service->name }}</td>
+                        <td>{{ $transaction->quantity }}</td>
+                        <td>{{ $transaction->amount }}</td>
+                        <td><span class="status-badge status-processing">{{ $transaction->service_status }}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn"
+                                    onclick="window.location.href = '/order/detail' ">Lihat
+                                    Detail</button>
+                                <button class="btn btn-outline">Lacak</button>
+                            </div>
+                        </td>
+                        @endforeach
+                    </tr>
+                        {{-- <td>#WW78523</td>
                         <td>21 Apr 2025</td>
                         <td>Cuci & Lipat</td>
                         <td>5 kg</td>
@@ -135,7 +152,7 @@
                                 <button class="btn btn-outline">Pesan Lagi</button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
 

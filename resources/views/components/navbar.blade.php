@@ -9,7 +9,7 @@
             <ul>
                 <li><a href="/">Beranda</a></li>
                 <li><a href="/service">Layanan</a></li>
-                <li><a href="/order">Pesanan</a></li>
+                <li id="order-nav"><a href="/order">Pesanan</a></li>
                 <li><a href="/about">Tentang Kami</a></li>
                 <li><a href="/contact">Kontak</a></li>
                 <li><a id="auth-link" class="hidden">Masuk</a></li> 

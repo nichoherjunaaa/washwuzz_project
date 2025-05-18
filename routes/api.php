@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,4 +41,5 @@ Route::get('auth/{id}', [UserController::class, 'show']);
 Route::put('auth/{id}', [UserController::class, 'update']);
 Route::delete('auth/{id}', [UserController::class, 'destroy']);
 
-// Client Only
+Route::post('order/store', [TransactionController::class, 'store']);
+Route::get('order', [TransactionController::class, 'index']);

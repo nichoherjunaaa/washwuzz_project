@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
 /*
@@ -18,12 +19,10 @@ Route::get('/', function () {
 });
 // Route untuk menampilkan semua layanan di service.blade.php
 Route::get('/service', [ServiceController::class, 'index']);
+Route::get('/order', [TransactionController::class, 'index']);
 
 Route::get('/service/detail/{id}', [ServiceController::class, 'show']);
 
-Route::get('/order', function () {
-    return view('pages.order');
-});
 Route::get('/about', function () {
     return view('pages.about');
 });
@@ -45,3 +44,4 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+

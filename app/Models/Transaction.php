@@ -15,5 +15,12 @@ class Transaction extends Model
         'payment_status',
         'payment_method',
         'service_status',
+        'quantity',
     ];
+
+    // app/Models/Transaction.php
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

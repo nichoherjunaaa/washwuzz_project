@@ -14,7 +14,12 @@ class TransactionController extends Controller
     public function index()
     {
         try {
-            $transactions = Transaction::all();
+            $transactions = Transaction::with('service')->get();
+
+
+            if (is_null($transactions)) {
+                throw new \Exception('No transactions found');
+            }
 
             if (request()->wantsJson()) {
                 return response()->json([
@@ -22,7 +27,6 @@ class TransactionController extends Controller
                     'message' => 'Success'
                 ], 200);
             }
-
             return view('pages.order', compact('transactions'));
 
         } catch (\Exception $e) {
@@ -35,15 +39,6 @@ class TransactionController extends Controller
 
             return redirect()->back()->withErrors('Something went wrong: ' . $e->getMessage());
         }
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
     }
 
     /**
@@ -51,7 +46,33 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'service_id'=> 'required|exists:services,id',
+            'amount' => 'required|numeric',
+            'payment_status' => 'required|string',
+            'payment_method' => 'required|string',
+            'service_status' => 'required|string',
+            'quantity' => 'required|numeric'
+        ]);
+
+        try {
+            if (empty($validated)) {
+                throw new \Exception('Validation failed, no data provided');
+            }
+
+            $transaction = Transaction::create($validated);
+            if (is_null($transaction)) {
+                throw new \Exception('Transaction creation failed');
+            }
+
+            return response()->json($transaction, 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create transaction',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**

@@ -12,6 +12,7 @@ function updateAuthLink() {
         authLink.style.padding = '10px 20px';
         authLink.setAttribute('href', '#');
 
+        // Hindari duplikasi event listener logout
         authLink.onclick = logout;
     } else {
         authLink.textContent = 'Masuk';
@@ -21,14 +22,16 @@ function updateAuthLink() {
         authLink.style.borderRadius = '';
         authLink.style.padding = '10px 20px';
 
+        // Pastikan tidak menjalankan logout saat belum login
         authLink.onclick = null;
     }
 
+    // Tampilkan tombol setelah selesai setup
     authLink.classList.remove('hidden');
 }
 
 async function logout(event) {
-    event.preventDefault();
+    event.preventDefault(); // Cegah navigasi karena href="#"
 
     const token = localStorage.getItem('token');
     if (!token) {

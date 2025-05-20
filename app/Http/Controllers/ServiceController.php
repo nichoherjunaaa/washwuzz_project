@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Http\Controllers\Controller;
@@ -13,23 +13,9 @@ class ServiceController extends Controller
         try {
             $services = Service::all();
 
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'data' => $services,
-                    'message' => 'Success'
-                ], 200);
-            }
-
             return view('pages.service', compact('services'));
 
         } catch (\Exception $e) {
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'message' => 'Something went wrong',
-                    'error' => $e->getMessage()
-                ], 500);
-            }
-
             return redirect()->back()->withErrors('Something went wrong: ' . $e->getMessage());
         }
     }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use Auth;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -14,32 +15,20 @@ class TransactionController extends Controller
     public function index()
     {
         try {
-            $transactions = Transaction::with('service')->get();
+            $userId = \Illuminate\Support\Facades\Auth::id();
 
+            $transactions = Transaction::with('service')
+                ->where('user_id', $userId)
+                ->get();
 
-            if (is_null($transactions)) {
-                throw new \Exception('No transactions found');
-            }
-
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'data' => $transactions,
-                    'message' => 'Success'
-                ], 200);
-            }
+            // Tidak perlu lempar exception, cukup kirimkan saja ke view
             return view('pages.order', compact('transactions'));
 
         } catch (\Exception $e) {
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'message' => 'Something went wrong',
-                    'error' => $e->getMessage()
-                ], 500);
-            }
-
-            return redirect()->back()->withErrors('Something went wrong: ' . $e->getMessage());
+            return redirect()->back()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +37,7 @@ class TransactionController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
-            'service_id'=> 'required|exists:services,id',
+            'service_id' => 'required|exists:services,id',
             'amount' => 'required|numeric',
             'payment_status' => 'required|string',
             'payment_method' => 'required|string',

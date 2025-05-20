@@ -9,13 +9,26 @@
             <ul>
                 <li><a href="/">Beranda</a></li>
                 <li><a href="/service">Layanan</a></li>
-                <li id="order-nav"><a href="/order">Pesanan</a></li>
+                @auth
+                    <li><a href="/order">Pesanan</a></li>
+                @endauth
                 <li><a href="/about">Tentang Kami</a></li>
                 <li><a href="/contact">Kontak</a></li>
-                <li><a id="auth-link" class="hidden">Masuk</a></li> 
+                <li>
+                    @auth
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="logout-btn">
+                            Keluar
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Masuk</a>
+                    @endauth
+                </li>
             </ul>
         </nav>
     </div>
 </header>
-<script src="{{ asset('js/app.js') }}"></script>
-

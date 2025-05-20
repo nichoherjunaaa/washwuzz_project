@@ -21,16 +21,23 @@
                     <h1>Masuk</h1>
                     <p>Selamat datang kembali di WashWuzz</p>
                 </div>
-                <form id="loginForm">
+                <form id="loginForm" action="{{ route('login-process') }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
                     </div>
+                    @error('email')
+                        <small class="error">{{ $message }}</small>
+                    @enderror
                     <div class="form-group">
                         <label for="password">Kata Sandi</label>
                         <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda"
                             required>
                     </div>
+                    @error('password')
+                        <small class="error">{{ $message }}</small>
+                    @enderror
                     <div class="form-footer">
                         <div class="remember-me">
                             <input type="checkbox" id="remember" name="remember">
@@ -67,79 +74,6 @@
 
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
-        });
-
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();  // Pastikan preventDefault dipanggil dengan benar
-
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-
-            if (!emailInput || !passwordInput) {
-                console.error('Tidak dapat menemukan input email atau password');
-                return;
-            }
-
-            const email = emailInput.value;
-            const password = passwordInput.value;
-
-            // Validasi input
-            if (!email || !password) {
-                alert('Email dan password wajib diisi.');
-                return;
-            }
-
-            // Menampilkan loader/spinner pada tombol login
-            const loginButton = document.querySelector('.login-button');
-            loginButton.disabled = true;
-            loginButton.innerText = 'Memproses...';
-
-            try {
-                const response = await fetch('api/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.json();
-                console.log('Respon dari server:', data);
-
-                if (!response.ok) {
-                    const message = data?.message?.[0] || 'Login gagal';
-                    alert(message);
-                    loginButton.disabled = false;
-                    loginButton.innerText = 'Masuk';
-                    return;
-                }
-
-                if (data?.user && data?.token) {
-                    alert('Login berhasil!');
-                    console.log('User:', data.user);
-                    console.log('Token:', data.token);
-
-                    // Simpan token di localStorage
-                    localStorage.setItem('token', data.token);
-
-                    // Redirect berdasarkan role user
-                    if (data?.user?.role === 'admin') {
-                        window.location.href = '/admin/dashboard';
-                    } else {
-                        window.location.href = '/';
-                    }
-                } else {
-                    alert('Terjadi kesalahan saat login.');
-                    loginButton.disabled = false;
-                    loginButton.innerText = 'Masuk';
-                }
-            } catch (error) {
-                console.error('Error saat login:', error);
-                alert('Tidak dapat menghubungi server. Pastikan koneksi internet stabil atau coba beberapa saat lagi.');
-                loginButton.disabled = false;
-                loginButton.innerText = 'Masuk';
-            }
         });
     </script>
 </body>

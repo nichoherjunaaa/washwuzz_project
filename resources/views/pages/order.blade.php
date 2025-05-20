@@ -57,45 +57,49 @@
                         <th>No. Pesanan</th>
                         <th>Tanggal</th>
                         <th>Layanan</th>
-                        <th>Jumlah Item</th>
+                        <th>Berat</th>
                         <th>Total</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @foreach ($transactions as $transaction )
-                        <td>{{ $transaction->id }}</td>
-                        <td>{{ $transaction->created_at }}</td>
-                        <td>{{ $transaction->service->name }}</td>
-                        <td>{{ $transaction->quantity }}</td>
-                        <td>{{ $transaction->amount }}</td>
-                        <td><span class="status-badge status-processing">{{ $transaction->service_status }}</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn"
-                                    onclick="window.location.href = '/order/detail' ">Lihat
-                                    Detail</button>
-                                <button class="btn btn-outline">Lacak</button>
-                            </div>
-                        </td>
-                        @endforeach
-                    </tr>
-                        {{-- <td>#WW78523</td>
-                        <td>21 Apr 2025</td>
-                        <td>Cuci & Lipat</td>
-                        <td>5 kg</td>
-                        <td>Rp150.000</td>
-                        <td><span class="status-badge status-processing">Diproses</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn"
-                                    onclick="window.location.href = '/order/detail' ">Lihat
-                                    Detail</button>
-                                <button class="btn btn-outline">Lacak</button>
-                            </div>
-                        </td>
+                    @forelse ($transactions as $transaction)
+                        <tr>
+                            <td>{{ $transaction->id }}</td>
+                            <td>{{ $transaction->created_at }}</td>
+                            <td>{{ $transaction->service->name }}</td>
+                            <td>{{ $transaction->quantity }} kg</td>
+                            <td>Rp {{ number_format($transaction->amount, 0, ',', '.') }}</td>
+                            <td><span class="status-badge status-processing">{{ $transaction->service_status }}</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn"
+                                        onclick="window.location.href = '/order/detail/{{ $transaction->id }}'">Lihat
+                                        Detail</button>
+                                    <button class="btn btn-outline">Lacak</button>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" style="text-align: center;">Belum ada pesanan</td>
+                        </tr>
+                    @endforelse
+
+                    {{-- <td>#WW78523</td>
+                    <td>21 Apr 2025</td>
+                    <td>Cuci & Lipat</td>
+                    <td>5 kg</td>
+                    <td>Rp150.000</td>
+                    <td><span class="status-badge status-processing">Diproses</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn" onclick="window.location.href = '/order/detail' ">Lihat
+                                Detail</button>
+                            <button class="btn btn-outline">Lacak</button>
+                        </div>
+                    </td>
                     </tr>
                     <tr>
                         <td>#WW78490</td>

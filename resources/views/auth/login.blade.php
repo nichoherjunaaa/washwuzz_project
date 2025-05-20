@@ -76,6 +76,15 @@
             mainNav.classList.toggle('active');
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if ($message = Session::get('failed'))
+        <script>
+            Swal.fire({
+                title: 'Email atau Password Salah',
+                icon: 'error',
+            });
+        </script>
+    @endif
 </body>
 
 </html>

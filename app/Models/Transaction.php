@@ -16,6 +16,8 @@ class Transaction extends Model
         'payment_method',
         'service_status',
         'quantity',
+        'notes',
+        'pickup_time'
     ];
 
     // app/Models/Transaction.php

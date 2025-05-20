@@ -64,10 +64,10 @@
                     <div class="social-contact">
                         <h3>Temukan Kami di</h3>
                         <div class="social-icons">
-                            <a href="#" aria-label="Facebook">📘</a>
-                            <a href="#" aria-label="Twitter">🐦</a>
-                            <a href="#" aria-label="Instagram">📷</a>
-                            <a href="#" aria-label="TikTok">📱</a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i><i class="fab fa-whatsapp"></i></i></a>
                         </div>
                     </div>
                 </div>

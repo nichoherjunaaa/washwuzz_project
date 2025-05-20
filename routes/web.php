@@ -38,18 +38,24 @@ Route::get('/service/detail/{id}', [ServiceController::class, 'show']);
 Route::get('/about', function () {
     return view('pages.about');
 });
+
 Route::get('/contact', function () {
     return view('pages.contact');
 });
 
-Route::get('/order', [TransactionController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', function () {
+        return view('pages.checkout');
+    });
+    Route::get('/order', [TransactionController::class, 'index']);
+});
+
+
 Route::get('/order/detail', function () {
     return view('pages.order_detail');
 });
 
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-});
+
 
 
 

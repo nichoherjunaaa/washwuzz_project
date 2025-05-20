@@ -1,7 +1,7 @@
 <header>
     <div class="container header-content">
         <div class="logo">
-            <span class="logo-icon">🧺</span>
+            <span class="logo-icon"><i class="fa-solid fa-tshirt"></i></span>
             <span>WashWuzz</span>
         </div>
         <button class="mobile-menu-btn" id="menuToggle">☰</button>

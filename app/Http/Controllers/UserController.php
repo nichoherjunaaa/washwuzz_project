@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,16 +29,46 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        if(Auth::attempt($data)){
-            return redirect()->route('home');
+        if (Auth::attempt($data)) {
+            return redirect()->route('home')->with('success', 'Login Berhasil');
         }
         return redirect()->route('login')->with('failed', 'Email atau Password Salah');
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }
 
+    public function register_process(Request $request)
+    {
+        $validatedData = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'role' => 'in:client,admin'
+        ]);
+
+        $data = [
+            'firstname' => $validatedData['firstname'],
+            'lastname' => $validatedData['lastname'],
+            'phone_number' => $validatedData['phone_number'],
+            'address' => $validatedData['address'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'role' => $validatedData['role']
+        ];
+        try {
+            $user = User::create($data);
+            Auth::login($user);
+            return redirect()->route('home')->with('success', 'Berhasil Membuat Akun');
+        } catch (\Exception $e) {
+            return redirect()->route('register')->with('failed', 'Gagal Membuat Akun');
+        }
+    }
 }
 

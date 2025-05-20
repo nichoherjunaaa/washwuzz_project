@@ -21,9 +21,8 @@
                     <h1>Daftar</h1>
                     <p>Bergabung dengan WashWuzz untuk pengalaman laundry lebih baik</p>
                 </div>
-                <form id="registerForm" method="POST" action="{{ url('/login') }}">
+                <form id="registerForm" method="POST" action="{{ route('register-process') }}">
                     @csrf
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstname">Nama Depan</label>
@@ -92,7 +91,6 @@
                         <label for="terms">Saya setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a
                                 href="#">Kebijakan Privasi</a></label>
                     </div>
-
                     <div class="form-checkbox">
                         <input type="checkbox" id="newsletter" name="newsletter">
                         <label for="newsletter">Saya ingin menerima berita dan promosi terbaru dari WashWuzz</label>
@@ -128,36 +126,6 @@
 
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
-        });
-
-        // Form submission handling
-        document.getElementById('registerForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-
-            try {
-                const response = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    alert(result.message);
-                    window.location.href = result.redirect; // redirect ke halaman login
-                } else {
-                    const error = await response.json();
-                    alert(error.message || 'Pendaftaran gagal');
-                }
-            } catch (err) {
-                alert('Terjadi kesalahan: ' + err.message);
-            }
         });
     </script>
 </body>

@@ -17,7 +17,9 @@ class Transaction extends Model
         'service_status',
         'quantity',
         'notes',
-        'pickup_time'
+        'pickup_time',
+        'address',
+        'order_id'
     ];
 
     // app/Models/Transaction.php

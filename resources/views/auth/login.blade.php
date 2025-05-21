@@ -54,11 +54,11 @@
                     <div class="social-login-title">
                         <span>Atau masuk dengan</span>
                     </div>
-                    <!-- <div class="social-buttons">
-                        <button class="social-button">📘</button>
-                        <button class="social-button">🐦</button>
-                        <button class="social-button">📷</button>
-                    </div> -->
+                    <div class="social-buttons">
+                        <button class="social-button"><i class="fab fa-google"></i></button>
+                        <button class="social-button"><i class="fab fa-facebook"></i></button>
+                        <button class="social-button"><i class="fab fa-twitter"></i></button>
+                    </div>
                 </div>
             </div>
         </div>

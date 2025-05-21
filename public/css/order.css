@@ -210,27 +210,27 @@ nav a.active {
     text-transform: uppercase;
 }
 
-.status-pending {
+.status-menunggu {
     background-color: #ffe082;
     color: #b58105;
 }
 
-.status-processing {
+.status-diproses {
     background-color: #90caf9;
     color: #0d47a1;
 }
 
-.status-completed {
+.status-selesai {
     background-color: #a5d6a7;
     color: #1b5e20;
 }
 
-.status-delivered {
+.status-terkirim {
     background-color: #b39ddb;
     color: #4527a0;
 }
 
-.status-cancelled {
+.status-dibatalkan {
     background-color: #ef9a9a;
     color: #b71c1c;
 }

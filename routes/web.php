@@ -44,10 +44,10 @@ Route::get('/contact', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/checkout', function () {
-        return view('pages.checkout');
-    });
-    Route::get('/order', [TransactionController::class, 'index']);
+    Route::get('/checkout/{id}', [TransactionController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout-process', [TransactionController::class, 'store'])->name('checkout-process');
+    Route::get('/order', [TransactionController::class, 'index'])->name('order');
+    Route::get('/order/detail/{id}', [TransactionController::class, 'show']);
 });
 
 

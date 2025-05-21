@@ -29,7 +29,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        if (Auth::attempt($data)) {
+        
+        if (Auth::attempt(credentials: $data)) {
             return redirect()->route('home')->with('success', 'Login Berhasil');
         }
         return redirect()->route('login')->with('failed', 'Email atau Password Salah');

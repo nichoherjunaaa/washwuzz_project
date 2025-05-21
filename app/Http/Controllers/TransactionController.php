@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Models\Transaction;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TransactionController extends Controller
 {
@@ -30,37 +33,64 @@ class TransactionController extends Controller
     }
 
 
+    private function generateOrderId()
+    {
+        $prefix = 'ORD'; // Bisa diganti dengan TXN, INV, dsb
+        $date = now()->format('Ymd'); // Contoh: 20250521
+        $random = strtoupper(Str::random(6)); // Misal: A8KD3F
+        return $prefix . '-' . $date . '-' . $random;
+    }
+
+    public function checkout($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('pages.checkout', compact('service'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'service_id' => 'required|exists:services,id',
-            'amount' => 'required|numeric',
-            'payment_status' => 'required|string',
-            'payment_method' => 'required|string',
-            'service_status' => 'required|string',
-            'quantity' => 'required|numeric'
+            'notes' => 'nullable|string',
+            'pickup_time' => 'nullable|string',
+            'quantity' => 'nullable|integer|min:0',
+            'amount' => 'nullable|integer|min:0',
+            'payment_status' => 'nullable|string|max:255',
+            'payment_method' => 'nullable|string|max:255',
+            'service_status' => 'nullable|string|max:255',
+            'address' => 'required|string|max:1000',
         ]);
 
         try {
-            if (empty($validated)) {
-                throw new \Exception('Validation failed, no data provided');
+            $pickupTime = null;
+            if (!empty($validated['pickup_time'])) {
+                $parts = explode('-', $validated['pickup_time']);
+                if (count($parts) > 0) {
+                    $pickupTime = now()->setTimeFromTimeString(trim($parts[0]));
+                }
             }
 
-            $transaction = Transaction::create($validated);
-            if (is_null($transaction)) {
-                throw new \Exception('Transaction creation failed');
-            }
+            Transaction::create([
+                'order_id' => $this->generateOrderId(),
+                'user_id' => auth()->id(),
+                'service_id' => $validated['service_id'],
+                'amount' => $validated['amount'] ?? 0,
+                'payment_status' => $validated['payment_status'] ?? null,
+                'payment_method' => $validated['payment_method'] ?? null,
+                'service_status' => $validated['service_status'] ?? 'menunggu',
+                'quantity' => $validated['quantity'] ?? 0,
+                'address' => $validated['address'],
+                'notes' => $validated['notes'] ?? null,
+                'pickup_time' => $pickupTime,
+            ]);
 
-            return response()->json($transaction, 201);
+            return redirect()->route('order')->with('success', 'Transaksi berhasil dibuat!');
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to create transaction',
-                'error' => $e->getMessage()
-            ], 500);
+            return redirect()->back()->withInput()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 

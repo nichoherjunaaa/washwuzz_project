@@ -21,7 +21,7 @@
     </section>
 
     <!-- Kategori Layanan -->
-    <section class="service-categories">
+    {{-- <section class="service-categories">
         <div class="container">
             <div class="category-tabs">
                 <div class="category-tab active">Semua Layanan</div>
@@ -31,7 +31,7 @@
                 <div class="category-tab">Perawatan Premium</div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Bagian Layanan -->
     <section class="services-section">
@@ -143,7 +143,7 @@
                     <div class="service-card">
                         <div class="service-image">
                             <!-- Bisa pakai emoji default, atau pakai gambar dari database kalau ada -->
-                            <img src="{{ $service['image'] ?? 'default-image.png' }}" alt="{{ $service['name'] }}" style="width: 100px; height: 100px;">
+                            <img src="{{ $service['image'] ?? 'default-image.png' }}" alt="{{ $service['name'] }}">
                         </div>
                         <div class="service-content">
                             <div class="service-name">

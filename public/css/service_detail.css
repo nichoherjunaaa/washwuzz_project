@@ -83,7 +83,7 @@ nav a.active {
 
 /* Service Detail Header */
 .service-detail-header {
-    background: linear-gradient(rgba(44, 123, 254, 0.9), rgba(44, 123, 254, 0.8)), url('/api/placeholder/1200/300') center/cover no-repeat;
+    background: linear-gradient(rgba(44, 123, 254, 0.9), rgba(44, 123, 254, 0.8)), url('https://fashionista.com/.image/t_share/MTcxMjI5NDkwMjkzMjU0MTI2/laundry-washing-clothes-coronavirus-covid19.jpg') center/cover no-repeat;
     color: white;
     padding: 8rem 0 4rem;
     margin-top: 4rem;
@@ -147,6 +147,13 @@ nav a.active {
     justify-content: center;
     font-size: 8rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.overview-image img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .overview-content h2 {

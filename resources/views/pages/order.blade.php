@@ -66,12 +66,12 @@
                 <tbody>
                     @forelse ($transactions as $transaction)
                         <tr>
-                            <td>{{ $transaction->id }}</td>
+                            <td>{{ $transaction->order_id }}</td>
                             <td>{{ $transaction->created_at }}</td>
                             <td>{{ $transaction->service->name }}</td>
                             <td>{{ $transaction->quantity }} kg</td>
                             <td>Rp {{ number_format($transaction->amount, 0, ',', '.') }}</td>
-                            <td><span class="status-badge status-processing">{{ $transaction->service_status }}</span></td>
+                            <td><span class="status-badge status-{{ $transaction->service_status }}">{{ $transaction->service_status }}</span></td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="btn"

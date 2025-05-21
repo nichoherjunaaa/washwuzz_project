@@ -11,10 +11,8 @@
 </head>
 
 <body>
-    <!-- Header -->
-    @include('components.navbar');
+    @include('components.navbar')
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1>Checkout</h1>
@@ -22,66 +20,46 @@
         </div>
     </section>
 
-    <!-- Checkout Section -->
     <section class="checkout-section">
         <div class="container">
             <div class="checkout-container">
-                <div class="checkout-form">
-                    <!-- Customer Information -->
-                    <div class="checkout-card">
-                        {{-- <h3>Informasi Pelanggan</h3> --}}
-                        {{-- <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">Nama Depan</label>
-                                <input type="text" id="firstName" class="form-control"
-                                    placeholder="Masukkan nama depan">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Nama Belakang</label>
-                                <input type="text" id="lastName" class="form-control"
-                                    placeholder="Masukkan nama belakang">
-                            </div>
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="contoh@email.com">
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="phone">Nomor Handphone</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+62 812-3456-7890">
-                        </div> --}}
-                    </div>
-
+                    <form method="POST" action="{{ route('checkout-process') }}" class="checkout-form">
+                        @csrf
                     <!-- Pickup/Delivery Information -->
                     <div class="checkout-card">
                         <h3>Alamat Penjemputan & Pengantaran</h3>
                         <div class="form-group">
                             <label for="address">Alamat Lengkap</label>
-                            <input type="text" id="address" class="form-control" placeholder="Masukkan alamat lengkap">
+                            <input type="text" id="address" name="address" class="form-control" required
+                                placeholder="Masukkan alamat lengkap">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="district">Kecamatan</label>
-                                <input type="text" id="district" class="form-control" placeholder="Masukkan kecamatan">
+                                <input type="text" id="district" name="district" class="form-control" required
+                                    placeholder="Masukkan kecamatan">
                             </div>
                             <div class="form-group">
                                 <label for="city">Kota</label>
-                                <input type="text" id="city" class="form-control" placeholder="Masukkan kota">
+                                <input type="text" id="city" name="city" class="form-control" required
+                                    placeholder="Masukkan kota">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="province">Provinsi</label>
-                                <input type="text" id="province" class="form-control" placeholder="Masukkan provinsi">
+                                <input type="text" id="province" name="province" class="form-control" required
+                                    placeholder="Masukkan provinsi">
                             </div>
                             <div class="form-group">
                                 <label for="postalCode">Kode Pos</label>
-                                <input type="text" id="postalCode" class="form-control" placeholder="Masukkan kode pos">
+                                <input type="text" id="postalCode" name="postal_code" class="form-control" required
+                                    placeholder="Masukkan kode pos">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="notes">Catatan</label>
-                            <textarea id="notes" class="form-control" rows="3"
+                            <textarea id="notes" name="notes" class="form-control" rows="3"
                                 placeholder="Tambahkan catatan"></textarea>
                         </div>
                     </div>
@@ -91,7 +69,7 @@
                         <h3>Opsi Penjemputan</h3>
                         <div class="pickup-options">
                             <div class="pickup-option selected">
-                                <input type="radio" name="pickup" id="pickup-today" checked>
+                                <input type="radio" name="pickup_option" id="pickup-today" value="today" checked>
                                 <span class="pickup-icon"><i class="fa-solid fa-truck"></i></span>
                                 <div class="pickup-details">
                                     <div class="pickup-title">Penjemputan Hari Ini</div>
@@ -100,10 +78,10 @@
                                 <div class="pickup-price">Gratis</div>
                             </div>
                             <div class="pickup-option">
-                                <input type="radio" name="pickup" id="pickup-scheduled">
+                                <input type="radio" name="pickup_option" id="pickup-scheduled" value="scheduled">
                                 <span class="pickup-icon"><i class="fa-regular fa-calendar"></i></span>
                                 <div class="pickup-details">
-                                    <div class="pickup-title">Pick Up</div>
+                                    <div class="pickup-title">Pick Up Terjadwal</div>
                                     <div class="pickup-description">Pilih tanggal dan waktu spesifik</div>
                                 </div>
                                 <div class="pickup-price">Gratis</div>
@@ -122,64 +100,61 @@
                             </div>
                         </div>
                     </div>
-                    <button class="checkout-btn">Konfirmasi Pesanan</button>
-                </div>
+
+                    <!-- Hidden Fields -->
+                    <input type="hidden" name="pickup_time" id="pickup_time_input" value="08:00 - 10:00">
+                    <input type="hidden" name="service_id" value="1"> <!-- Ubah sesuai kebutuhan -->
+                    <input type="hidden" name="quantity" value="0">
+                    <input type="hidden" name="amount" value="0">
+                    <input type="hidden" name="payment_status" value="">
+                    <input type="hidden" name="payment_method" value="">
+                    <input type="hidden" name="service_status" value="menunggu">
+                    <input type="hidden" name="service_id" value="{{ $service->id }}">
+                    <button type="submit" class="checkout-btn">Konfirmasi Pesanan</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     @include('components.footer')
 
     <script>
-        // Toggle menu untuk tampilan mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-        });
-
-        // Select time slot
         const timeSlots = document.querySelectorAll('.time-slot');
+        const pickupTimeInput = document.getElementById('pickup_time_input');
+
         timeSlots.forEach(slot => {
             slot.addEventListener('click', () => {
                 timeSlots.forEach(s => s.classList.remove('selected'));
                 slot.classList.add('selected');
+                pickupTimeInput.value = slot.textContent.trim();
             });
         });
 
-        // Select pickup option
         const pickupOptions = document.querySelectorAll('.pickup-option');
         pickupOptions.forEach(option => {
             option.addEventListener('click', () => {
                 pickupOptions.forEach(o => o.classList.remove('selected'));
                 option.classList.add('selected');
-                const radio = option.querySelector('input[type="radio"]');
-                radio.checked = true;
+                option.querySelector('input[type="radio"]').checked = true;
             });
         });
 
-        // Select service option
-        const serviceOptions = document.querySelectorAll('.service-option');
-        serviceOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                serviceOptions.forEach(o => o.classList.remove('selected'));
-                option.classList.add('selected');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
             });
-        });
-
-        // Select payment method
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                paymentMethods.forEach(m => m.classList.remove('selected'));
-                method.classList.add('selected');
-                const radio = method.querySelector('input[type="radio"]');
-                radio.checked = true;
-            });
-        });
+        }
     </script>
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                title: 'Pesanan berhasil dibuat',
+                icon: 'success',
+            });
+        </script>
+    @endif
 </body>
 
 </html>

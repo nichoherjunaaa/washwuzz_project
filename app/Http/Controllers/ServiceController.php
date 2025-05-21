@@ -41,37 +41,37 @@ class ServiceController extends Controller
     }
 
     public function show($id)
-{
-    try {
-        $service = Service::find($id);
+    {
+        try {
+            $service = Service::find($id);
 
-        if (!$service) {
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'message' => 'Service not found!'
-                ], 404);
+            if (!$service) {
+                if (request()->wantsJson()) {
+                    return response()->json([
+                        'message' => 'Service not found!'
+                    ], 404);
+                }
+
+                return redirect()->back()->withErrors('Service not found!');
             }
 
-            return redirect()->back()->withErrors('Service not found!');
+            if (request()->wantsJson()) {
+                return response()->json($service);
+            }
+
+            return view('pages.service_detail', compact('service'));
+
+        } catch (\Exception $e) {
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'message' => 'An error occurred while retrieving the service',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+
+            return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
         }
-
-        if (request()->wantsJson()) {
-            return response()->json($service);
-        }
-
-        return view('pages.service_detail', compact('service'));
-
-    } catch (\Exception $e) {
-        if (request()->wantsJson()) {
-            return response()->json([
-                'message' => 'An error occurred while retrieving the service',
-                'error' => $e->getMessage()
-            ], 500);
-        }
-
-        return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
     }
-}
 
 
     public function update(Request $request, $id)

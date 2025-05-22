@@ -28,8 +28,8 @@
             
             <div class="order-header">
                 <div>
-                    <div class="order-id">#WW78523</div>
-                    <div class="order-date">Dipesan pada: 21 April 2025, 14:30 WIB</div>
+                    <div class="order-id">{{ $transaction->order_id }}</div>
+                    <div class="order-date">Dipesan pada: {{ $transaction->created_at }}</div>
                 </div>
                 <div class="order-actions">
                     <button class="btn">Lacak Pesanan</button>
@@ -41,31 +41,31 @@
             <div class="detail-card">
                 <h3>Status Pesanan</h3>
                 <div class="progress-track">
-                    <div class="progress-bar" style="width: 60%;"></div>
-                    
+                    <div class="progress-bar" style="width: 40%;"></div>
+                    <div class="track-step completed">
+                        <div class="step-icon">✓</div>
+                        <div class="step-name">Menunggu</div>
+                    </div>
                     <div class="track-step completed">
                         <div class="step-icon">✓</div>
                         <div class="step-name">Diterima</div>
                     </div>
-                    
                     <div class="track-step completed">
                         <div class="step-icon">✓</div>
                         <div class="step-name">Dijemput</div>
                     </div>
-                    
-                    <div class="track-step active">
+                    <div class="track-step">
                         <div class="step-icon">3</div>
                         <div class="step-name">Diproses</div>
                     </div>
-                    
                     <div class="track-step">
                         <div class="step-icon">4</div>
-                        <div class="step-name">Siap Antar</div>
+                        <div class="step-name">Selesai</div>
                     </div>
                     
                     <div class="track-step">
                         <div class="step-icon">5</div>
-                        <div class="step-name">Selesai</div>
+                        <div class="step-name">Terkirim</div>
                     </div>
                 </div>
                 
@@ -77,36 +77,23 @@
                 <h3>Item Laundry</h3>
                 <div class="items-list">
                     <div class="item-row header">
-                        <div>Item</div>
+                        {{-- <div>Item</div> --}}
                         <div>Layanan</div>
                         <div>Jumlah</div>
                         <div>Subtotal</div>
+                        <div>Status Pembayaran</div>
                     </div>
                     
                     <div class="item-row">
-                        <div>Baju</div>
-                        <div>Cuci & Lipat</div>
-                        <div>2 kg</div>
-                        <div>Rp60.000</div>
-                    </div>
-                    
-                    <div class="item-row">
-                        <div>Celana</div>
-                        <div>Cuci & Lipat</div>
-                        <div>2 kg</div>
-                        <div>Rp60.000</div>
-                    </div>
-                    
-                    <div class="item-row">
-                        <div>Seprai</div>
-                        <div>Cuci & Lipat</div>
-                        <div>1 kg</div>
-                        <div>Rp30.000</div>
+                        <div>{{ $transaction->service->name }}</div>
+                        <div>{{ $transaction->quantity ?? '-' }}</div>
+                        <div>{{ $transaction->amount }}</div>
+                        <div>{{ $transaction->payment_status }}</div>
                     </div>
                 </div>
                 
                 <div class="service-notes">
-                    <p>Catatan: Mohon perhatikan ekstra untuk noda pada seprai.</p>
+                    <p>Catatan: {{ $transaction->notes }}</p>
                 </div>
             </div>
 
@@ -115,27 +102,23 @@
                 <h3>Informasi Pesanan</h3>
                 <div class="detail-row">
                     <span class="detail-label">Nama Pemesan</span>
-                    <span class="detail-value">Budi Santoso</span>
+                    <span class="detail-value">{{$transaction->user->firstname . ' ' . $transaction->user->lastname}}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Nomor Telepon</span>
-                    <span class="detail-value">+62 812-3456-7890</span>
+                    <span class="detail-value">{{ $transaction->user->phone_number }}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Waktu Penjemputan</span>
-                    <span class="detail-value">21 April 2025, 16:00-18:00 WIB</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Waktu Pengantaran</span>
-                    <span class="detail-value">23 April 2025, 16:00-18:00 WIB</span>
+                    <span class="detail-value">{{ $transaction->pickup_time }}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Layanan</span>
-                    <span class="detail-value">Reguler (2 hari)</span>
+                    <span class="detail-value">{{ $transaction->service->name }}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Alamat</span>
-                    <span class="detail-value">Jl. Paingan No. 15, Maguwoharjo, Depok, Sleman</span>
+                    <span class="detail-value">{{ $transaction->address }}</span>
                 </div>
             </div>
 
@@ -168,10 +151,10 @@
             </div>
 
             <!-- Action buttons -->
-            <div style="text-align: center; margin-top: 3rem;">
+            {{-- <div style="text-align: center; margin-top: 3rem;">
                 <button class="btn">Unduh Invoice</button>
                 <button class="btn btn-outline" style="margin-left: 1rem;">Pesan Lagi</button>
-            </div>
+            </div> --}}
         </div>
     </section>
 

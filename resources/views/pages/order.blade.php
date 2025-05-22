@@ -54,30 +54,31 @@
             <table class="order-table">
                 <thead>
                     <tr>
-                        <th>No. Pesanan</th>
-                        <th>Tanggal</th>
-                        <th>Layanan</th>
-                        <th>Berat</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
+                        <th style="text-align: center">No. Pesanan</th>
+                        <th style="text-align: center">Tanggal</th>
+                        <th style="text-align: center">Layanan</th>
+                        <th style="text-align: center">Berat</th>
+                        <th style="text-align: center">Total</th>
+                        <th style="text-align: center">Status</th>
+                        <th style="text-align: center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @forelse ($transactions as $transaction)
                         <tr>
-                            <td>{{ $transaction->order_id }}</td>
-                            <td>{{ $transaction->created_at }}</td>
-                            <td>{{ $transaction->service->name }}</td>
-                            <td>{{ $transaction->quantity }} kg</td>
-                            <td>Rp {{ number_format($transaction->amount, 0, ',', '.') }}</td>
-                            <td><span class="status-badge status-{{ $transaction->service_status }}">{{ $transaction->service_status }}</span></td>
+                            <td style="text-align: center">{{ $transaction->order_id }}</td>
+                            <td style="text-align: center">{{ $transaction->created_at }}</td>
+                            <td style="text-align: center">{{ $transaction->service->name }}</td>
+                            <td style="text-align: center">{{ $transaction->quantity }} kg</td>
+                            <td style="text-align: center">Rp {{ number_format($transaction->amount, 0, ',', '.') }}</td>
+                            <td style="text-align: center"><span class="status-badge status-{{ $transaction->service_status }}">{{ $transaction->service_status }}</span></td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="btn"
                                         onclick="window.location.href = '/order/detail/{{ $transaction->id }}'">Lihat
                                         Detail</button>
-                                    <button class="btn btn-outline">Lacak</button>
+                                    <button class="btn btn-outline">Bayar</button>
                                 </div>
                             </td>
                         </tr>

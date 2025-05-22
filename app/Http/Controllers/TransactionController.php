@@ -99,7 +99,8 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        return view('pages.order_detail', compact('transaction'));
     }
 
     /**

@@ -51,11 +51,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/order/detail', function () {
-    return view('pages.order_detail');
-});
-
-
 
 
 

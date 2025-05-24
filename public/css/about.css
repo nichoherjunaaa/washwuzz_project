@@ -95,7 +95,7 @@ nav a.active {
     background: linear-gradient(rgba(44, 123, 254, 0.9), rgba(44, 123, 254, 0.8)), url('/api/placeholder/1200/300') center/cover no-repeat;
     color: white;
     padding: 8rem 0 2rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .page-header h1 {

@@ -70,15 +70,21 @@
                             <td style="text-align: center">{{ $transaction->order_id }}</td>
                             <td style="text-align: center">{{ $transaction->created_at }}</td>
                             <td style="text-align: center">{{ $transaction->service->name }}</td>
-                            <td style="text-align: center">{{ $transaction->quantity }} kg</td>
-                            <td style="text-align: center">Rp {{ number_format($transaction->amount, 0, ',', '.') }}</td>
-                            <td style="text-align: center"><span class="status-badge status-{{ $transaction->service_status }}">{{ $transaction->service_status }}</span></td>
+                            <td style="text-align: center">{{ $transaction->quantity !== null && $transaction->quantity !== 0 ? $transaction->quantity . ' kg' : '-' }}</td>
+                            <td style="text-align: center">
+                                {{ $transaction->amount !== null && $transaction->amount !== 0 ? 'Rp' . number_format($transaction->amount, 0, ',', '.') : '-' }}
+                            </td>
+                            <td style="text-align: center">
+                                <span class="status-badge status-{{ $transaction->service_status ?? 'unknown' }}">
+                                    {{ $transaction->service_status ?? 'Unknown' }}
+                                </span>
+                            </td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="btn"
                                         onclick="window.location.href = '/order/detail/{{ $transaction->id }}'">Lihat
                                         Detail</button>
-                                    <button class="btn btn-outline">Bayar</button>
+                                    <button class="btn btn-outline" onclick="window.location.href = '{{ route('order.pay', $transaction->id) }}'">Bayar</button>
                                 </div>
                             </td>
                         </tr>

@@ -60,42 +60,20 @@
         <div class="container">
             <h2 class="section-title">Layanan Populer</h2>
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        👕
+                @foreach ($services as $service)
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="{{ $service->image }}" alt="">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">{{ $service->name }}<span class="popular-tag">Populer</span></h3>
+                            <div class="service-price">Mulai dari Rp7.000/kg</div>
+                            <p class="service-description">Layanan standar kami untuk mencuci, mengeringkan, dan melipat
+                                pakaian. Cocok untuk kebutuhan harian Anda dengan deterjen dan pewangi premium.</p>
+                            <a href="#" class="service-button">Pilih</a>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3 class="service-title">Cuci & Lipat <span class="popular-tag">Populer</span></h3>
-                        <div class="service-price">Mulai dari Rp7.000/kg</div>
-                        <p class="service-description">Layanan standar kami untuk mencuci, mengeringkan, dan melipat
-                            pakaian. Cocok untuk kebutuhan harian Anda dengan deterjen dan pewangi premium.</p>
-                        <a href="#" class="service-button">Pilih</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        👔
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">Dry Cleaning</h3>
-                        <div class="service-price">Mulai dari Rp20.000/item</div>
-                        <p class="service-description">Layanan dry cleaning profesional untuk pakaian khusus, baju
-                            formal, dan bahan sensitif yang membutuhkan perawatan ekstra.</p>
-                        <a href="#" class="service-button">Pilih</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        👗
-                    </div>
-                    <div class="service-content">
-                        <h3 class="service-title">Setrika <span class="popular-tag">Populer</span></h3>
-                        <div class="service-price">Mulai dari Rp5.000/item</div>
-                        <p class="service-description">Hanya butuh setrika? Kami akan menyetrika pakaian Anda hingga
-                            rapi dan siap pakai.</p>
-                        <a href="#" class="service-button">Pilih</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <a href="/service" class="another-service-btn">Lihat Layanan Lain</a>
         </div>

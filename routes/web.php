@@ -15,30 +15,22 @@ use App\Http\Controllers\ServiceController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [ServiceController::class, 'indexHome'])->name('home');
 
-Route::get('/login', [UserController::class, 'index'])->name('login');
-Route::post('/login-process', [UserController::class, 'login_process'])->name('login-process');
-
-Route::get('/register', [UserController::class, 'register'])->name('register');
-Route::post('/register-process', [UserController::class, 'register_process'])->name('register-process');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [UserController::class, 'index'])->name('login');
+    Route::post('/login-process', [UserController::class, 'login_process'])->name('login-process');
+    
+    Route::get('/register', [UserController::class, 'register'])->name('register');
+    Route::post('/register-process', [UserController::class, 'register_process'])->name('register-process');
+});
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
-
-// Route untuk menampilkan semua layanan di service.blade.php
 Route::get('/service', [ServiceController::class, 'index']);
 Route::get('/service/detail/{id}', [ServiceController::class, 'show']);
-
-
-
-
 Route::get('/about', function () {
     return view('pages.about');
 });
-
 Route::get('/contact', function () {
     return view('pages.contact');
 });
@@ -48,7 +40,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout-process', [TransactionController::class, 'store'])->name('checkout-process');
     Route::get('/order', [TransactionController::class, 'index'])->name('order');
     Route::get('/order/detail/{id}', [TransactionController::class, 'show']);
+    Route::get('/order/pay/{id}', [TransactionController::class, 'pay'])->name('order.pay');
 });
+
+
+
 
 
 

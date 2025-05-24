@@ -25,15 +25,14 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required value="{{ old('email') }}">
                     </div>
                     @error('email')
                         <small class="error">{{ $message }}</small>
                     @enderror
                     <div class="form-group">
                         <label for="password">Kata Sandi</label>
-                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda"
-                            required>
+                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required value="{{ old('password') }}">
                     </div>
                     @error('password')
                         <small class="error">{{ $message }}</small>

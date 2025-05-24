@@ -145,7 +145,7 @@
             <div class="team-grid">
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="assets/hero/roganda.jpg" alt="" style="width:100%; height: 100%; object-fit: cover">
                     </div>
                     <div class="team-info">
                         <h3 class="team-name">Roganda Liehtakian</h3>
@@ -160,7 +160,7 @@
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="assets/hero/alfeus.jpg" alt="" style="width:100%; height: 100%; object-fit: cover">
                     </div>
                     <div class="team-info">
                         <h3 class="team-name">Alfeus Galih Putra</h3>

@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Helpers\MidtransHelper;
 
 
 class TransactionController extends Controller
@@ -79,7 +80,7 @@ class TransactionController extends Controller
                 'user_id' => auth()->id(),
                 'service_id' => $validated['service_id'],
                 'amount' => $validated['amount'] ?? 0,
-                'payment_status' => $validated['payment_status'] ?? null,
+                'payment_status' => $validated['payment_status'] ?? 'menunggu',
                 'payment_method' => $validated['payment_method'] ?? null,
                 'service_status' => $validated['service_status'] ?? 'menunggu',
                 'quantity' => $validated['quantity'] ?? 0,
@@ -102,6 +103,20 @@ class TransactionController extends Controller
         $transaction = Transaction::findOrFail($id);
         return view('pages.order_detail', compact('transaction'));
     }
+
+    public function pay($id)
+    {
+        $transaction = Transaction::with('user')->findOrFail($id);
+
+        if ($transaction->payment_status === 'paid') {
+            return redirect()->route('order')->with('info', 'Transaksi ini sudah dibayar.');
+        }
+
+        $snapToken = MidtransHelper::generateSnapToken($transaction);
+
+        return view('pages.pay', compact('transaction', 'snapToken'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

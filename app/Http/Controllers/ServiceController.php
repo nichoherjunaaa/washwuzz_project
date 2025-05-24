@@ -20,6 +20,16 @@ class ServiceController extends Controller
         }
     }
 
+    public function indexHome()
+    {
+        try {
+            $services = Service::orderBy('id', 'asc')->take(3)->get();
+            return view('pages.home', compact('services'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Something went wrong: ' . $e->getMessage());
+        }
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

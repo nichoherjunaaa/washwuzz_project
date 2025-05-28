@@ -64,13 +64,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     @forelse ($transactions as $transaction)
                         <tr>
                             <td style="text-align: center">{{ $transaction->order_id }}</td>
                             <td style="text-align: center">{{ $transaction->created_at }}</td>
                             <td style="text-align: center">{{ $transaction->service->name }}</td>
-                            <td style="text-align: center">{{ $transaction->quantity !== null && $transaction->quantity !== 0 ? $transaction->quantity . ' kg' : '-' }}</td>
+                            <td style="text-align: center">
+                                {{ $transaction->quantity !== null && $transaction->quantity !== 0 ? $transaction->quantity . ' kg' : '-' }}
+                            </td>
                             <td style="text-align: center">
                                 {{ $transaction->amount !== null && $transaction->amount !== 0 ? 'Rp' . number_format($transaction->amount, 0, ',', '.') : '-' }}
                             </td>
@@ -80,12 +82,20 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="action-buttons">
+                                <div class="action-buttons" style="display: flex; justify-content: center; gap: 0.5rem;">
                                     <button class="btn"
-                                        onclick="window.location.href = '/order/detail/{{ $transaction->id }}'">Lihat
-                                        Detail</button>
-                                    <button class="btn btn-outline" onclick="window.location.href = '{{ route('order.pay', $transaction->id) }}'">Bayar</button>
+                                        onclick="window.location.href = '/order/detail/{{ $transaction->id }}'">
+                                        Lihat Detail
+                                    </button>
+
+                                    @if ($transaction->payment_status != 'sukses' && $transaction->amount > 0)
+                                        <button class="btn btn-outline"
+                                            onclick="window.location.href = '{{ route('order.pay', $transaction->id) }}'">
+                                            Bayar
+                                        </button>
+                                    @endif
                                 </div>
+
                             </td>
                         </tr>
                     @empty

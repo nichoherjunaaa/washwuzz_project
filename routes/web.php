@@ -3,6 +3,8 @@
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\MidtransController;
+
 use App\Http\Controllers\ServiceController;
 /*
 |--------------------------------------------------------------------------

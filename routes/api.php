@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\MidtransController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
@@ -16,4 +17,6 @@ use App\Http\Controllers\Api\ServiceController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/midtrans/notification', [MidtransController::class, 'handleNotification']);
 

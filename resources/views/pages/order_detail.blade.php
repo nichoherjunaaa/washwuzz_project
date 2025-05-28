@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
     <link rel="stylesheet" href="{{ asset('css/order_detail.css') }}">
 </head>
+
 <body>
     <!-- Header -->
     @include('components.navbar');
@@ -25,7 +27,7 @@
             <a href="../order_page/order.html" class="back-link">
                 ← Kembali ke Daftar Pesanan
             </a>
-            
+
             <div class="order-header">
                 <div>
                     <div class="order-id">{{ $transaction->order_id }}</div>
@@ -62,39 +64,14 @@
                         <div class="step-icon">4</div>
                         <div class="step-name">Selesai</div>
                     </div>
-                    
+
                     <div class="track-step">
                         <div class="step-icon">5</div>
                         <div class="step-name">Terkirim</div>
                     </div>
                 </div>
-                
-                <p style="text-align: center; color: #0d47a1;">Estimasi selesai: 23 April 2025, 17:00 WIB</p>
-            </div>
 
-            <!-- Order Items -->
-            <div class="detail-card">
-                <h3>Item Laundry</h3>
-                <div class="items-list">
-                    <div class="item-row header">
-                        {{-- <div>Item</div> --}}
-                        <div>Layanan</div>
-                        <div>Jumlah</div>
-                        <div>Subtotal</div>
-                        <div>Status Pembayaran</div>
-                    </div>
-                    
-                    <div class="item-row">
-                        <div>{{ $transaction->service->name }}</div>
-                        <div>{{ $transaction->quantity ?? '-' }}</div>
-                        <div>{{ $transaction->amount }}</div>
-                        <div>{{ $transaction->payment_status }}</div>
-                    </div>
-                </div>
-                
-                <div class="service-notes">
-                    <p>Catatan: {{ $transaction->notes }}</p>
-                </div>
+                <p style="text-align: center; color: #0d47a1;">Estimasi selesai: 23 April 2025, 17:00 WIB</p>
             </div>
 
             <!-- Order Info -->
@@ -102,7 +79,8 @@
                 <h3>Informasi Pesanan</h3>
                 <div class="detail-row">
                     <span class="detail-label">Nama Pemesan</span>
-                    <span class="detail-value">{{$transaction->user->firstname . ' ' . $transaction->user->lastname}}</span>
+                    <span
+                        class="detail-value">{{$transaction->user->firstname . ' ' . $transaction->user->lastname}}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Nomor Telepon</span>
@@ -122,39 +100,28 @@
                 </div>
             </div>
 
-            <!-- Payment Info -->
             <div class="detail-card">
-                <h3>Informasi Pembayaran</h3>
-                <div class="detail-row">
-                    <span class="detail-label">Metode Pembayaran</span>
-                    <div class="payment-method">
-                        <div class="payment-icon">💳</div>
-                        <span class="detail-value">BCA Virtual Account</span>
+                <div class="items-list">
+                    <div class="item-row header">
+                        {{-- <div>Item</div> --}}
+                        <div>Layanan</div>
+                        <div>Jumlah</div>
+                        <div>Subtotal</div>
+                        <div>Status Pembayaran</div>
+                    </div>
+
+                    <div class="item-row">
+                        <div>{{ $transaction->service->name }}</div>
+                        <div>{{ $transaction->quantity ?? '-' }}</div>
+                        <div>{{ $transaction->amount }}</div>
+                        <div>{{ $transaction->payment_status }}</div>
                     </div>
                 </div>
-                <div class="detail-row">
-                    <span class="detail-label">Status Pembayaran</span>
-                    <span class="detail-value highlight">Lunas</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Subtotal</span>
-                    <span class="detail-value">Rp150.000</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Biaya Pengantaran</span>
-                    <span class="detail-value">Rp0 (Free)</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Total</span>
-                    <span class="detail-value" style="font-size: 1.2rem; color: #2c7bfe;">Rp150.000</span>
+
+                <div class="service-notes">
+                    <p>Catatan: {{ $transaction->notes }}</p>
                 </div>
             </div>
-
-            <!-- Action buttons -->
-            {{-- <div style="text-align: center; margin-top: 3rem;">
-                <button class="btn">Unduh Invoice</button>
-                <button class="btn btn-outline" style="margin-left: 1rem;">Pesan Lagi</button>
-            </div> --}}
         </div>
     </section>
 
@@ -165,10 +132,11 @@
         // Toggle menu untuk tampilan mobile
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
-        
+
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
         });
     </script>
 </body>
+
 </html>

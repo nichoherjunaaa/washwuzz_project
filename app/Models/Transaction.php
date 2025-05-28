@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+
     protected $fillable = [
+        'order_id',
         'user_id',
         'service_id',
         'amount',
@@ -19,10 +21,12 @@ class Transaction extends Model
         'notes',
         'pickup_time',
         'address',
-        'order_id'
     ];
 
-    // app/Models/Transaction.php
+    protected $casts = [
+        'pickup_time' => 'datetime',
+    ];
+
     public function service()
     {
         return $this->belongsTo(Service::class);
@@ -32,5 +36,4 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }

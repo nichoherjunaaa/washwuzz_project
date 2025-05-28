@@ -23,6 +23,7 @@ class TransactionController extends Controller
 
             $transactions = Transaction::with('service')
                 ->where('user_id', $userId)
+                ->orderBy('created_at', 'desc')
                 ->get();
 
             // Tidak perlu lempar exception, cukup kirimkan saja ke view
@@ -54,6 +55,8 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+
+        // dd($request->all());
         $validated = $request->validate([
             'service_id' => 'required|exists:services,id',
             'notes' => 'nullable|string',
@@ -91,6 +94,7 @@ class TransactionController extends Controller
 
             return redirect()->route('order')->with('success', 'Transaksi berhasil dibuat!');
         } catch (\Exception $e) {
+            dd($e);
             return redirect()->back()->withInput()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
         }
     }
@@ -108,7 +112,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::with('user')->findOrFail($id);
 
-        if ($transaction->payment_status === 'paid') {
+        if ($transaction->payment_status === 'success') {
             return redirect()->route('order')->with('info', 'Transaksi ini sudah dibayar.');
         }
 

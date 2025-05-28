@@ -18,7 +18,7 @@
         <div class="container">
             <h1>{{ $service->name ?? '' }}</h1>
             <p>{{ $service->description ?? '' }}</p>
-            <div class="price-badge">Rp{{ $service->price ?? 0 }}/kg</div>
+            <div class="price-badge">Rp{{ $service->price ?? 0 }}/{{ $service->name == 'Cuci Regular' ? 'kg' : 'item' }}</div>
         </div>
     </section>
 

@@ -24,7 +24,7 @@
     <!-- Order Detail Section -->
     <section class="order-detail-section">
         <div class="container">
-            <a href="../order_page/order.html" class="back-link">
+            <a href="{{ route('order') }}" class="back-link">
                 ← Kembali ke Daftar Pesanan
             </a>
 
@@ -34,46 +34,35 @@
                     <div class="order-date">Dipesan pada: {{ $transaction->created_at }}</div>
                 </div>
                 <div class="order-actions">
-                    <button class="btn">Lacak Pesanan</button>
-                    <button class="btn btn-outline">Hubungi Kami</button>
+                    <a class="btn btn-outline">Hubungi Kami</a>
                 </div>
             </div>
 
             <!-- Order Status Timeline -->
+            @php
+                $status = strtolower('diproses'); // pastikan huruf kecil semua
+                $statuses = ['menunggu', 'diproses', 'selesai', 'terkirim'];
+                $currentStep = array_search($status, $statuses);
+                $progressPercent = ($currentStep + 1) / count($statuses) * 100;
+            @endphp
+
             <div class="detail-card">
                 <h3>Status Pesanan</h3>
+                <p>{{ ucfirst($transaction->status) }}</p>
+
                 <div class="progress-track">
-                    <div class="progress-bar" style="width: 40%;"></div>
-                    <div class="track-step completed">
-                        <div class="step-icon">✓</div>
-                        <div class="step-name">Menunggu</div>
-                    </div>
-                    <div class="track-step completed">
-                        <div class="step-icon">✓</div>
-                        <div class="step-name">Diterima</div>
-                    </div>
-                    <div class="track-step completed">
-                        <div class="step-icon">✓</div>
-                        <div class="step-name">Dijemput</div>
-                    </div>
-                    <div class="track-step">
-                        <div class="step-icon">3</div>
-                        <div class="step-name">Diproses</div>
-                    </div>
-                    <div class="track-step">
-                        <div class="step-icon">4</div>
-                        <div class="step-name">Selesai</div>
-                    </div>
+                    <div class="progress-bar" style="width: {{ $progressPercent }}%;"></div>
 
-                    <div class="track-step">
-                        <div class="step-icon">5</div>
-                        <div class="step-name">Terkirim</div>
-                    </div>
+                    @foreach ($statuses as $index => $step)
+                        <div class="track-step {{ $index <= $currentStep ? 'completed' : '' }}">
+                            <div class="step-icon">
+                                {{ $index <= $currentStep ? '✓' : $index + 1 }}
+                            </div>
+                            <div class="step-name">{{ ucfirst($step) }}</div>
+                        </div>
+                    @endforeach
                 </div>
-
-                <p style="text-align: center; color: #0d47a1;">Estimasi selesai: 23 April 2025, 17:00 WIB</p>
             </div>
-
             <!-- Order Info -->
             <div class="detail-card">
                 <h3>Informasi Pesanan</h3>

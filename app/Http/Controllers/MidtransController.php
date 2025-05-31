@@ -8,6 +8,7 @@ class MidtransController extends Controller
 {
     public function handleNotification(Request $request)
     {
+        dd($request->all());
         // Inisialisasi konfigurasi Midtrans
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         \Midtrans\Config::$isProduction = false; // Sesuaikan dengan environment

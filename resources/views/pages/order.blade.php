@@ -28,27 +28,34 @@
         <div class="container">
             <h2 class="section-title">Pesanan Saya</h2>
 
-            <!-- Filters and Search -->
-            <div class="order-filters">
+            <form method="GET" action="{{ route('order') }}" class="order-filters" style="display: flex; gap: 1rem;">
                 <div class="search-box">
-                    <input type="text" placeholder="Cari nomor pesanan...">
-                    <button><i class="fa fa-search"></i></button>
+                    <input type="text" name="search" placeholder="Cari nomor pesanan..."
+                        value="{{ request('search') }}">
+                    <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
+
                 <div class="filter-dropdown">
-                    <select>
+                    <select name="status" onchange="this.form.submit()">
                         <option value="">Semua Status</option>
-                        <option value="pending">Menunggu</option>
-                        <option value="processing">Diproses</option>
-                        <option value="completed">Selesai</option>
-                        <option value="delivered">Terkirim</option>
-                        <option value="cancelled">Dibatalkan</option>
+                        <option value="menunggu" {{ request('status') == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
+                        <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Diproses
+                        </option>
+                        <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai
+                        </option>
+                        <option value="terkirim" {{ request('status') == 'terkirim' ? 'selected' : '' }}>Terkirim
+                        </option>
+                        <option value="dibatalkan" {{ request('status') == 'dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                        </option>
                     </select>
-                    <select>
-                        <option value="newest">Terbaru</option>
-                        <option value="oldest">Terlama</option>
+
+                    <select name="sort" onchange="this.form.submit()">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Terbaru</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Terlama</option>
                     </select>
                 </div>
-            </div>
+            </form>
+
 
             <!-- Orders Table -->
             <table class="order-table">
@@ -103,81 +110,10 @@
                             <td colspan="7" style="text-align: center;">Belum ada pesanan</td>
                         </tr>
                     @endforelse
-
-                    {{-- <td>#WW78523</td>
-                    <td>21 Apr 2025</td>
-                    <td>Cuci & Lipat</td>
-                    <td>5 kg</td>
-                    <td>Rp150.000</td>
-                    <td><span class="status-badge status-processing">Diproses</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn" onclick="window.location.href = '/order/detail' ">Lihat
-                                Detail</button>
-                            <button class="btn btn-outline">Lacak</button>
-                        </div>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>#WW78490</td>
-                        <td>19 Apr 2025</td>
-                        <td>Dry Cleaning</td>
-                        <td>3 item</td>
-                        <td>Rp225.000</td>
-                        <td><span class="status-badge status-completed">Selesai</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn">Lihat Detail</button>
-                                <button class="btn btn-outline">Lacak</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#WW78350</td>
-                        <td>15 Apr 2025</td>
-                        <td>Cuci & Setrika</td>
-                        <td>8 item</td>
-                        <td>Rp400.000</td>
-                        <td><span class="status-badge status-delivered">Terkirim</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn">Lihat Detail</button>
-                                <button class="btn btn-outline">Pesan Lagi</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#WW78215</td>
-                        <td>10 Apr 2025</td>
-                        <td>Cuci & Lipat</td>
-                        <td>4 kg</td>
-                        <td>Rp120.000</td>
-                        <td><span class="status-badge status-delivered">Terkirim</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn">Lihat Detail</button>
-                                <button class="btn btn-outline">Pesan Lagi</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#WW78102</td>
-                        <td>05 Apr 2025</td>
-                        <td>Cuci & Setrika</td>
-                        <td>6 item</td>
-                        <td>Rp300.000</td>
-                        <td><span class="status-badge status-cancelled">Dibatalkan</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn">Lihat Detail</button>
-                                <button class="btn btn-outline">Pesan Lagi</button>
-                            </div>
-                        </td>
-                    </tr> --}}
                 </tbody>
             </table>
 
-            <!-- Empty State - Will show when no orders -->
+            <!-- Order Kosong -->
             <div class="no-orders" style="display: none;">
                 <h3>Belum Ada Pesanan</h3>
                 <p>Anda belum memiliki pesanan laundry. Mulai pesanan pertama Anda sekarang untuk menikmati layanan
@@ -186,12 +122,38 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
-                <button>⟨</button>
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>⟩</button>
+            @php
+                $currentPage = $transactions->currentPage();
+                $lastPage = $transactions->lastPage();
+            @endphp
+
+            <div class="pagination" style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 2rem;">
+                {{-- Tombol Sebelumnya --}}
+                @if ($currentPage > 1)
+                    <a href="{{ $transactions->url($currentPage - 1) }}">
+                        <button>⟨</button>
+                    </a>
+                @else
+                    <button disabled style="opacity: 0.5; cursor: not-allowed;">⟨</button>
+                @endif
+
+                {{-- Nomor Halaman --}}
+                @for ($i = 1; $i <= $lastPage; $i++)
+                    <a href="{{ $transactions->url($i) }}">
+                        <button class="{{ $i === $currentPage ? 'active' : '' }}">
+                            {{ $i }}
+                        </button>
+                    </a>
+                @endfor
+
+                {{-- Tombol Berikutnya --}}
+                @if ($currentPage < $lastPage)
+                    <a href="{{ $transactions->url($currentPage + 1) }}">
+                        <button>⟩</button>
+                    </a>
+                @else
+                    <button disabled style="opacity: 0.5; cursor: not-allowed;">⟩</button>
+                @endif
             </div>
         </div>
     </section>

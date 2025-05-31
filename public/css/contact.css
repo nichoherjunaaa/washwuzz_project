@@ -29,6 +29,10 @@
     align-items: flex-start;
 }
 
+.logo-icon img{
+    width: 50px;
+}
+
 .info-icon {
     font-size: 2rem;
     color: #2c7bfe;

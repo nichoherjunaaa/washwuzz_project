@@ -273,7 +273,7 @@
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-content">
-                        Kualitas dry cleaning mereka sangat luar biasa. Saya telah mempercayakan jas dan pakaian formal
+                        Kualitas layanan sangat luar biasa. Saya telah mempercayakan jas dan pakaian formal
                         saya selama bertahun-tahun, dan mereka selalu mengembalikannya dalam kondisi sempurna.
                     </div>
                     <div class="testimonial-author">

@@ -59,6 +59,10 @@ header {
     font-size: 1.8rem;
 }
 
+.logo-icon img{
+    width: 50px;
+}
+
 nav ul {
     display: flex;
     list-style: none;

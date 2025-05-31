@@ -28,7 +28,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-Route::get('/service', [ServiceController::class, 'index']);
+Route::get('/service', [ServiceController::class, 'index'])->name('service');
 Route::get('/service/detail/{id}', [ServiceController::class, 'show']);
 Route::get('/about', function () {
     return view('pages.about');

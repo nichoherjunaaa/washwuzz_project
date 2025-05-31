@@ -16,17 +16,29 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
+
+            // dd($request->all());
             $userId = \Illuminate\Support\Facades\Auth::id();
 
-            $transactions = Transaction::with('service')
-                ->where('user_id', $userId)
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query = Transaction::with('service')
+                ->where('user_id', $userId);
 
-            // Tidak perlu lempar exception, cukup kirimkan saja ke view
+            if ($request->filled('status')) {
+                $query->where('service_status', $request->status);
+            }
+
+            if ($request->filled('search')) {
+                $query->where('order_id', 'like', '%' . $request->search . '%');
+            }
+
+            $sortOrder = $request->get('sort') === 'oldest' ? 'asc' : 'desc';
+            $query->orderBy('created_at', $sortOrder);
+
+            $transactions = $query->paginate(3)->appends($request->query());
+
             return view('pages.order', compact('transactions'));
 
         } catch (\Exception $e) {
@@ -34,12 +46,11 @@ class TransactionController extends Controller
         }
     }
 
-
     private function generateOrderId()
     {
-        $prefix = 'ORD'; // Bisa diganti dengan TXN, INV, dsb
-        $date = now()->format('Ymd'); // Contoh: 20250521
-        $random = strtoupper(Str::random(6)); // Misal: A8KD3F
+        $prefix = 'ORD';
+        $date = now()->format('Ymd'); 
+        $random = strtoupper(Str::random(6));
         return $prefix . '-' . $date . '-' . $random;
     }
 
@@ -110,8 +121,8 @@ class TransactionController extends Controller
 
     public function pay($id)
     {
-        $transaction = Transaction::with('user')->findOrFail($id);
 
+        $transaction = Transaction::with('user')->findOrFail($id);
         if ($transaction->payment_status === 'success') {
             return redirect()->route('order')->with('info', 'Transaksi ini sudah dibayar.');
         }

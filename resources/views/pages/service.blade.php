@@ -229,22 +229,7 @@
             </div>
         </div>
     </section>
-
-    <!-- Ajakan Bertindak -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Siap Nikmati Laundry Bebas Ribet?</h2>
-                <p>Bergabunglah dengan ribuan pelanggan puas yang telah membuat hari laundry jadi bebas stres dengan
-                    WashWuzz. Pelanggan pertama dapat diskon 15%!</p>
-                <div class="cta-buttons">
-                    <a href="#" class="cta-primary">Jadwalkan Penjemputan</a>
-                    <a href="#" class="cta-secondary">Unduh Aplikasi Kami</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Footer -->
     @include('components.footer')
 

@@ -398,3 +398,7 @@ footer {
     background-color: #2c7bfe;
     color: #fff;
 }
+
+.logo-icon img{
+    width: 50px;
+}

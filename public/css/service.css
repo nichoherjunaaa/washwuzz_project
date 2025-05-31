@@ -186,6 +186,9 @@ nav a.active {
     object-fit: cover;
 }
 
+.logo-icon img{
+    width: 50px;
+}
 
 .service-content {
     padding: 1.5rem;

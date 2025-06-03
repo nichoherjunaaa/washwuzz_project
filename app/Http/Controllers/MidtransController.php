@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Midtrans\Notification;
 use App\Models\Transaction;
@@ -8,10 +9,10 @@ class MidtransController extends Controller
 {
     public function handleNotification(Request $request)
     {
-        dd($request->all());
-        // Inisialisasi konfigurasi Midtrans
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        \Midtrans\Config::$isProduction = false; // Sesuaikan dengan environment
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
 
         $notification = new Notification();
 
@@ -21,12 +22,10 @@ class MidtransController extends Controller
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
-        // Status dari Midtrans
         $transactionStatus = $notification->transaction_status;
         $paymentType = $notification->payment_type;
         $fraudStatus = $notification->fraud_status;
 
-        // Update berdasarkan status
         if ($transactionStatus == 'capture') {
             if ($paymentType == 'credit_card') {
                 if ($fraudStatus == 'challenge') {
@@ -36,15 +35,15 @@ class MidtransController extends Controller
                 }
             }
         } elseif ($transactionStatus == 'settlement') {
-            $transaction->payment_status = 'success';
+            $transaction->payment_status = 'sukses';
         } elseif ($transactionStatus == 'pending') {
-            $transaction->payment_status = 'pending';
+            $transaction->payment_status = 'menunggu';
         } elseif ($transactionStatus == 'deny') {
-            $transaction->payment_status = 'denied';
+            $transaction->payment_status = 'gagal';
         } elseif ($transactionStatus == 'expire') {
-            $transaction->payment_status = 'expired';
+            $transaction->payment_status = 'gagal';
         } elseif ($transactionStatus == 'cancel') {
-            $transaction->payment_status = 'canceled';
+            $transaction->payment_status = 'gagal';
         }
 
         $transaction->save();

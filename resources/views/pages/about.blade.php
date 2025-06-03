@@ -114,13 +114,6 @@
                             hasrat untuk memberikan layanan laundry berkualitas tinggi.</p>
                     </div>
                 </div>
-                <!-- <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2013</div>
-                        <h3>Ekspansi Pertama</h3>
-                        <p>Membuka cabang kedua dan ketiga di Jakarta. Meluncurkan layanan antar-jemput pertama untuk kenyamanan pelanggan.</p>
-                    </div>
-                </div> -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-year">2025</div>
@@ -129,27 +122,6 @@
                             pelanggan memesan layanan kami.</p>
                     </div>
                 </div>
-                <!-- <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2019</div>
-                        <h3>Go Green</h3>
-                        <p>Beralih sepenuhnya ke deterjen dan proses ramah lingkungan. Memperkenalkan program daur ulang kantong plastik.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2022</div>
-                        <h3>Ekspansi Nasional</h3>
-                        <p>Membuka cabang di lima kota besar di Indonesia. Mencapai tonggak 10.000 pelanggan aktif bulanan.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2025</div>
-                        <h3>WashWuzz Sekarang</h3>
-                        <p>15 lokasi di seluruh Indonesia dengan lebih dari 150 karyawan berdedikasi, melayani ribuan pelanggan setiap hari.</p>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -161,10 +133,11 @@
             <div class="team-grid">
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="{{ asset('assets/hero/abdiel-hero.jpg') }}" alt=""
+                            style="height: 100%;width: 100%; object-fit: cover;">
                     </div>
                     <div class="team-info">
-                        <h3 class="team-name">Budi Santoso</h3>
+                        <h3 class="team-name">Abdiel Hosana</h3>
                         <div class="team-position">Pendiri & CEO</div>
                         <p class="team-bio">Budi memiliki pengalaman lebih dari 15 tahun dalam industri layanan. Visinya
                             untuk layanan laundry berkualitas tinggi yang mudah diakses menjadi dasar dari WashWuzz.</p>
@@ -173,17 +146,18 @@
                                     class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
+                            <a href="https://instagram.com/rek_tir" target="_blank" aria-label="Instagram"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="{{ asset('assets/hero/alfeus.jpg') }}" alt=""
+                            style="height: 100%;width: 100%; object-fit: cover;">
                     </div>
                     <div class="team-info">
-                        <h3 class="team-name">Sari Wulandari</h3>
+                        <h3 class="team-name">Alfeus Galih</h3>
                         <div class="team-position">Pendiri & CEO</div>
                         <p class="team-bio">Sari memiliki pengalaman lebih dari 15 tahun dalam industri layanan. Visinya
                             untuk layanan laundry berkualitas tinggi yang mudah diakses menjadi dasar dari WashWuzz.</p>
@@ -192,17 +166,18 @@
                                     class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
+                            <a href="https://instagram.com/alfeussgalihh" target="_blank" aria-label="Instagram"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="{{ asset('assets/hero/roganda-hero.jpg') }}" alt=""
+                            style="height: 100%; width: 100%; object-fit: cover; object-position: center;">
                     </div>
                     <div class="team-info">
-                        <h3 class="team-name">Rina Putri</h3>
+                        <h3 class="team-name">Roganda Liehtakian</h3>
                         <div class="team-position">Direktur Operasional</div>
                         <p class="team-bio">Rina mengawasi semua operasi sehari-hari di WashWuzz. Keahliannya dalam
                             manajemen operasi telah membantu menciptakan proses yang efisien dan berkualitas.</p>
@@ -211,17 +186,18 @@
                                     class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com/rinaputri" target="_blank" aria-label="Instagram"><i
+                            <a href="https://instagram.com/liehtakian_roganda" target="_blank" aria-label="Instagram"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-photo">
-                        👨
+                        <img src="{{ asset('assets/hero/nicho_juna.png') }}" alt=""
+                            style="height: 100%; object-fit: cover">
                     </div>
                     <div class="team-info">
-                        <h3 class="team-name">Dimas Aditya</h3>
+                        <h3 class="team-name">Nicho Herjuna</h3>
                         <div class="team-position">Manajer Teknologi</div>
                         <p class="team-bio">Dimas memimpin tim pengembangan teknologi yang membangun aplikasi dan
                             infrastruktur digital yang memudahkan pengalaman pelanggan di WashWuzz.</p>
@@ -230,7 +206,7 @@
                                     class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
+                            <a href="https://instagram.com/nichoherjunaa" target="_blank" aria-label="Instagram"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>

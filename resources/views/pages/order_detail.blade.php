@@ -7,6 +7,8 @@
     <title>Detail Pesanan - WashWuzz</title>
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
     <link rel="stylesheet" href="{{ asset('css/order_detail.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/logo/logo.png') }}">
+
 </head>
 
 <body>
@@ -102,7 +104,7 @@
                     <div class="item-row">
                         <div>{{ $transaction->service->name }}</div>
                         <div>{{ $transaction->quantity ?? '-' }}</div>
-                        <div>{{ $transaction->amount }}</div>
+                        <div>{{ $transaction->quantity * $transaction->service->price }}</div>
                         <div>{{ $transaction->payment_status }}</div>
                     </div>
                 </div>

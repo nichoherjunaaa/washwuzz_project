@@ -10,15 +10,32 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    /**
+     * Tampilkan halaman login
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         return view('auth.login');
     }
+
+    /**
+     * Tampilkan halaman register
+     *
+     * @return \Illuminate\View\View
+     */
     public function register(Request $request)
     {
         return view('auth.register');
     }
 
+    /**
+     * Proses login
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login_process(Request $request)
     {
         $request->validate([
@@ -36,12 +53,23 @@ class UserController extends Controller
         return redirect()->route('login')->with('failed', 'Email atau Password Salah');
     }
 
+    /**
+     * Logout
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
     }
 
+    /**
+     * Proses register
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function register_process(Request $request)
     {
         $validatedData = $request->validate([

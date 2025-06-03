@@ -115,57 +115,6 @@
         </div>
     </section>
 
-    <!-- Additional Services -->
-    {{-- <section class="additional-services">
-        <div class="container">
-            <h2 class="section-title">Tambahkan Layanan</h2>
-            <div class="services-list">
-                <div class="add-on-service">
-                    <div class="add-on-icon">🧴</div>
-                    <h3>Detergen Hipoalergenik</h3>
-                    <p>Cocok untuk kulit sensitif dan bebas pewangi</p>
-                    <div class="add-on-price">+ Rp3.000/kg</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-                <div class="add-on-service">
-                    <div class="add-on-icon">👖</div>
-                    <h3>Setrika Ekstra</h3>
-                    <p>Setrika premium untuk hasil yang lebih rapi</p>
-                    <div class="add-on-price">+ Rp5.000/kg</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-                <div class="add-on-service">
-                    <div class="add-on-icon">⏱️</div>
-                    <h3>Layanan Ekspres</h3>
-                    <p>Selesai dalam 24 jam</p>
-                    <div class="add-on-price">+ Rp15.000/kg</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-                <div class="add-on-service">
-                    <div class="add-on-icon">🦠</div>
-                    <h3>Sanitasi Ekstra</h3>
-                    <p>Disinfeksi tambahan untuk membunuh kuman dan bakteri</p>
-                    <div class="add-on-price">+ Rp10.000/kg</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-                <div class="add-on-service">
-                    <div class="add-on-icon">🧳</div>
-                    <h3>Pengemasan Premium</h3>
-                    <p>Pakaian dikemas dalam kemasan eksklusif</p>
-                    <div class="add-on-price">+ Rp8.000/pesanan</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-                <div class="add-on-service">
-                    <div class="add-on-icon">🔍</div>
-                    <h3>Pemeriksaan Reparasi</h3>
-                    <p>Identifikasi kerusakan kecil pada pakaian</p>
-                    <div class="add-on-price">+ Rp5.000/pesanan</div>
-                    <a href="#" class="add-button">Tambahkan</a>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <!-- FAQ Section -->
     <section class="faq-section">
         <div class="container">

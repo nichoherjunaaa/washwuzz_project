@@ -32,7 +32,7 @@
                 <div class="contact-info">
                     <h2>Informasi Kontak</h2>
                     <div class="info-item">
-                        <div class="info-icon">📍</div>
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="info-content">
                             <h3>Alamat Kantor Pusat</h3>
                             <p>Jl. Paingan, Maguwoharjo, Depok</p>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">📞</div>
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
                         <div class="info-content">
                             <h3>Telepon</h3>
                             <p>Layanan Pelanggan: (021) 123-4567</p>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">✉️</div>
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
                         <div class="info-content">
                             <h3>Email</h3>
                             <p>Informasi: info@washwuzz.com</p>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">🕒</div>
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
                         <div class="info-content">
                             <h3>Jam Operasional</h3>
                             <p>Senin - Jumat: 07:00 - 21:00</p>
@@ -125,10 +125,6 @@
                 <div class="map-container">
                     <!-- Placeholder for map -->
                     <div id="map" style="height: 400px; width: 100%; border-radius: 8px;"></div>
-
-                    {{-- <div class="map-placeholder">
-                        <div class="map-placeholder-text">Peta Lokasi WashWuzz</div>
-                    </div> --}}
                 </div>
                 <div class="branches-container">
                     <div class="branches-grid">

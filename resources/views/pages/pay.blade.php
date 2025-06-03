@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
     <script src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                 <div class="item-row">
                     <div>{{ $transaction->service->name }}</div>
                     <div>{{ $transaction->quantity ?? '-' }}</div>
-                    <div>Rp {{ number_format($transaction->amount, 0, ',', '.') }}</div>
+                    <div>Rp {{ number_format($transaction->quantity * $transaction->service->price, 0, ',', '.') }}</div>
                 </div>
             </div>
             <div class="service-notes">
@@ -35,20 +36,34 @@
                 Sekarang</button>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var payButton = document.getElementById('pay-button');
         payButton.addEventListener('click', function () {
             window.snap.pay('{{ $snapToken }}', {
                 onSuccess: function (result) {
-                    alert("Pembayaran berhasil!");
+                    Swal.fire({
+                        title: "Sukses!",
+                        text: "Pembayaran berhasil",
+                        icon: "success"
+                    });
                     window.location.href = "{{ route('order') }}";
                 },
                 onPending: function (result) {
-                    alert("Menunggu pembayaran...");
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Oops...",
+                        text: "Pembayaran sedang diproses",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                    });
                     window.location.href = "{{ route('order') }}";
                 },
                 onError: function (result) {
-                    alert("Pembayaran gagal!");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Pembayaran gagal"
+                    });
                 },
                 onClose: function () {
                     alert('Anda menutup popup tanpa menyelesaikan pembayaran');

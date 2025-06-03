@@ -37,7 +37,7 @@ class TransactionController extends Controller
             $sortOrder = $request->get('sort') === 'oldest' ? 'asc' : 'desc';
             $query->orderBy('created_at', $sortOrder);
 
-            $transactions = $query->paginate(3)->appends($request->query());
+            $transactions = $query->paginate(5)->appends($request->query());
 
             return view('pages.order', compact('transactions'));
 
@@ -73,7 +73,6 @@ class TransactionController extends Controller
             'notes' => 'nullable|string',
             'pickup_time' => 'nullable|string',
             'quantity' => 'nullable|integer|min:0',
-            'amount' => 'nullable|integer|min:0',
             'payment_status' => 'nullable|string|max:255',
             'payment_method' => 'nullable|string|max:255',
             'service_status' => 'nullable|string|max:255',
@@ -93,7 +92,6 @@ class TransactionController extends Controller
                 'order_id' => $this->generateOrderId(),
                 'user_id' => auth()->id(),
                 'service_id' => $validated['service_id'],
-                'amount' => $validated['amount'] ?? 0,
                 'payment_status' => $validated['payment_status'] ?? 'menunggu',
                 'payment_method' => $validated['payment_method'] ?? null,
                 'service_status' => $validated['service_status'] ?? 'menunggu',
@@ -121,11 +119,14 @@ class TransactionController extends Controller
 
     public function pay($id)
     {
-
         $transaction = Transaction::with('user')->findOrFail($id);
+
         if ($transaction->payment_status === 'success') {
             return redirect()->route('order')->with('info', 'Transaksi ini sudah dibayar.');
         }
+
+        $transaction->order_id = $this->generateOrderId();
+        $transaction->save();
 
         $snapToken = MidtransHelper::generateSnapToken($transaction);
 
@@ -157,3 +158,5 @@ class TransactionController extends Controller
         //
     }
 }
+
+

@@ -17,7 +17,7 @@ class MidtransHelper
         $params = [
             'transaction_details' => [
                 'order_id' => $transaction->order_id,
-                'gross_amount' => (int) $transaction->amount,
+                'gross_amount' => (int) $transaction->service->price * $transaction->quantity,
             ],
             'customer_details' => [
                 'first_name' => $transaction->user->name,

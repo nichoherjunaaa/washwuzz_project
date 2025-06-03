@@ -7,6 +7,7 @@
     <title>Daftar Pesanan - WashWuzz</title>
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/logo/logo.png') }}">
 
 </head>
 
@@ -81,7 +82,8 @@
                                 {{ $transaction->quantity !== null && $transaction->quantity !== 0 ? $transaction->quantity . ' kg' : '-' }}
                             </td>
                             <td style="text-align: center">
-                                {{ $transaction->amount !== null && $transaction->amount !== 0 ? 'Rp' . number_format($transaction->amount, 0, ',', '.') : '-' }}
+                                {{ $transaction->quantity !== null && $transaction->quantity !== 0 ? 'Rp' . number_format($transaction->quantity * $transaction->service->price, 
+                                0, ',', '.') : '-' }}
                             </td>
                             <td style="text-align: center">
                                 <span class="status-badge status-{{ $transaction->service_status ?? 'unknown' }}">
@@ -95,7 +97,7 @@
                                         Lihat Detail
                                     </button>
 
-                                    @if ($transaction->payment_status != 'sukses' && $transaction->amount > 0)
+                                    @if ($transaction->payment_status != 'sukses' && $transaction->quantity > 0 && $transaction->service_status != 'dibatalkan')
                                         <button class="btn btn-outline"
                                             onclick="window.location.href = '{{ route('order.pay', $transaction->id) }}'">
                                             Bayar
@@ -118,7 +120,7 @@
                 <h3>Belum Ada Pesanan</h3>
                 <p>Anda belum memiliki pesanan laundry. Mulai pesanan pertama Anda sekarang untuk menikmati layanan
                     laundry berkualitas dari WashWuzz!</p>
-                <a href="#" class="cta-button">Pesan Sekarang</a>
+                <a href="{{ route('service') }}" class="cta-button">Pesan Sekarang</a>
             </div>
 
             <!-- Pagination -->

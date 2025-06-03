@@ -106,11 +106,6 @@
                     <div class="social-login-title">
                         <span>Atau daftar dengan</span>
                     </div>
-                    <!-- <div class="social-buttons">
-                        <button class="social-button">📘</button>
-                        <button class="social-button">🐦</button>
-                        <button class="social-button">📷</button>
-                    </div> -->
                 </div>
             </div>
         </div>

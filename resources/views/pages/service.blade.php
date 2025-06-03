@@ -23,129 +23,12 @@
         </div>
     </section>
 
-    <!-- Kategori Layanan -->
-    {{-- <section class="service-categories">
-        <div class="container">
-            <div class="category-tabs">
-                <div class="category-tab active">Semua Layanan</div>
-                <div class="category-tab">Cuci Lipat</div>
-                <div class="category-tab">Dry Cleaning</div>
-                <div class="category-tab">Setrika</div>
-                <div class="category-tab">Perawatan Premium</div>
-            </div>
-        </div>
-    </section> --}}
-
     <!-- Bagian Layanan -->
     <section class="services-section">
         <div class="container">
             <h2 class="section-title">Layanan Kami</h2>
             <p class="section-subtitle">Pilih dari berbagai layanan laundry dan dry cleaning kami, semua dirancang untuk
                 mempermudah hidup Anda dan menjaga pakaian Anda tetap terbaik.</p>
-
-            {{-- <div class="services-grid">
-
-                <!-- Cuci & Lipat Reguler -->
-                <div class="service-card">
-                    <div class="service-image">👕</div>
-                    <div class="service-content">
-                        <div class="service-name">
-                            <span>Cuci & Lipat Reguler</span>
-                            <span class="popular-tag">Populer</span>
-                        </div>
-                        <div class="service-price">Mulai dari Rp7.000/kg</div>
-                        <p class="service-description">Layanan cuci, kering, dan lipat standar untuk kebutuhan laundry
-                            sehari-hari Anda.</p>
-                        <ul class="service-features">
-                            <li>Detergen premium termasuk</li>
-                            <li>Pelembut kain tersedia</li>
-                            <li>Dilipat dan diatur rapi</li>
-                        </ul>
-                        <a href="../service_detail/service_detail.html" class="service-button">Pilih</a>
-                        <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
-                    </div>
-                </div>
-
-                <!-- Dry Cleaning -->
-                <div class="service-card">
-                    <div class="service-image">🧥</div>
-                    <div class="service-content">
-                        <div class="service-name">
-                            <span>Dry Cleaning</span>
-                        </div>
-                        <div class="service-price">Mulai dari Rp20.000/item</div>
-                        <p class="service-description">Perawatan khusus untuk kain halus dan pakaian formal seperti jas,
-                            gaun, dan pakaian kerja.</p>
-                        <ul class="service-features">
-                            <li>Cocok untuk bahan sensitif</li>
-                            <li>Teknologi pembersih non-air</li>
-                            <li>Hasil akhir profesional</li>
-                        </ul>
-                        <a href="#" class="service-button">Pilih</a>
-                        <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
-                    </div>
-                </div>
-
-                <!-- Layanan Setrika Saja -->
-                <div class="service-card">
-                    <div class="service-image">🧼</div>
-                    <div class="service-content">
-                        <div class="service-name">
-                            <span>Setrika Saja</span>
-                        </div>
-                        <div class="service-price">Mulai dari Rp5.000/kg</div>
-                        <p class="service-description">Hanya butuh setrika? Kami akan menyetrika pakaian Anda hingga
-                            rapi dan siap pakai.</p>
-                        <ul class="service-features">
-                            <li>Disetrika dengan uap</li>
-                            <li>Dilipat atau digantung sesuai permintaan</li>
-                            <li>Tanpa kerutan</li>
-                        </ul>
-                        <a href="#" class="service-button">Pilih</a>
-                        <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
-                    </div>
-                </div>
-
-                <!-- Perawatan Premium -->
-                <div class="service-card">
-                    <div class="service-image">👗</div>
-                    <div class="service-content">
-                        <div class="service-name">
-                            <span>Perawatan Premium</span>
-                        </div>
-                        <div class="service-price">Mulai dari Rp40.000/item</div>
-                        <p class="service-description">Untuk pakaian desainer, gaun mewah, dan kain spesial yang
-                            membutuhkan perhatian ekstra.</p>
-                        <ul class="service-features">
-                            <li>Dikerjakan oleh ahli</li>
-                            <li>Perlindungan warna & tekstur</li>
-                            <li>Kemasan eksklusif</li>
-                        </ul>
-                        <a href="#" class="service-button">Pilih</a>
-                        <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
-                    </div>
-                </div>
-
-                <!-- Layanan Ekspres -->
-                <div class="service-card">
-                    <div class="service-image">⏱️</div>
-                    <div class="service-content">
-                        <div class="service-name">
-                            <span>Ekspres 24 Jam</span>
-                        </div>
-                        <div class="service-price">Tambahan Rp15.000/kg</div>
-                        <p class="service-description">Butuh cepat? Layanan ekspres kami memastikan pakaian Anda bersih
-                            dan kembali dalam 24 jam.</p>
-                        <ul class="service-features">
-                            <li>Prioritas penanganan</li>
-                            <li>Cocok untuk kebutuhan mendesak</li>
-                            <li>Tersedia untuk semua layanan</li>
-                        </ul>
-                        <a href="#" class="service-button">Pilih</a>
-                        <a href="#" class="learn-more">Pelajari Lebih Lanjut</a>
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="services-grid">
                 @foreach ($services as $service)
@@ -156,11 +39,9 @@
                         <div class="service-content">
                             <div class="service-name">
                                 <span>{{ $service['name'] }}</span>
-                                {{-- @if (!empty($service['popular']) && $service['popular'])
-                                <span class="popular-tag">Populer</span>
-                                @endif --}}
                             </div>
-                            <div class="service-price">Mulai dari Rp{{ number_format($service['price'], 0, ',', '.') }}/{{ $service['name'] == 'Cuci Regular' ? 'kg' : 'item' }}                           </div>
+                            <div class="service-price">Mulai dari Rp{{ number_format($service['price'], 
+                            0, ',', '.') }}/{{ $service['name'] == 'Cuci Regular' ? 'kg' : 'item' }}</div>
                             <p class="service-description">{{ $service['description'] }}</p>
                             <a href="{{ url('/service/detail/' . $service['id']) }}" class="service-button">Pilih</a>
                         </div>
